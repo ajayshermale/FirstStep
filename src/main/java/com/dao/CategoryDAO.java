@@ -1,8 +1,13 @@
 package com.dao;
 
+import java.util.List;
+
 import com.firststep.model.Category;
 
 public interface CategoryDAO {
-	public void saveOrUpdate(Category category);
+	
+   public List<Category> CategoryList();
+   public void createCategory(Category category);
+ /*  public String stringcategory();*/
 
 }
