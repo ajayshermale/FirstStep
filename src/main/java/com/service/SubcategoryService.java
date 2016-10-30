@@ -15,7 +15,8 @@ public class SubcategoryService {
 	@Autowired
 	   private SubcategoryDAOImpl subcategoryDaoImpl;
 	@Transactional
-	public void addsubCategory(Subcategory subcategory)
+	
+	public void createsubCategory(Subcategory subcategory)
 	{
 		subcategoryDaoImpl.createsubCategory(subcategory);
 	}
@@ -36,16 +37,16 @@ public class SubcategoryService {
 	{
 		return subcategoryDaoImpl.stringsubcategory();
 	}
-	@Transactional
-	public Subcategory getSubCatById(int subCategory_id)
-	{
-		return subcategoryDaoImpl.getSubCatById(subCategory_id);
-	}
 	
-	@Transactional
-	public void deleteSubCategory(int subCategory_id)
+   @Transactional
+	public void deleteSubCategory(int subcategoryId)
 	{
-		subcategoryDaoImpl.deleteSubCategory(subCategory_id);
+		subcategoryDaoImpl.deleteSubCategory(subcategoryId);
+	}
+   @Transactional
+	public Subcategory getSubCatById(int subcategoryId)
+	{
+		return subcategoryDaoImpl.getSubCatById(subcategoryId);
 	}
 	
 }

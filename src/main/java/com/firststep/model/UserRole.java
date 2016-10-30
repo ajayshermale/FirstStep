@@ -1,11 +1,13 @@
 package com.firststep.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 @Entity
-public class UserRole {
+public class UserRole  implements Serializable {
 
 	@Id
 	private int userId;

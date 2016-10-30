@@ -1,5 +1,7 @@
 package com.firststep.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -8,7 +10,7 @@ import javax.persistence.OneToOne;
 import com.firststep.model.User;
 
 @Entity
-public class Cart {
+public class Cart  implements Serializable{
 
 	@Id
 	private int cartId;

@@ -14,6 +14,13 @@ public class Subcategory {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int subcategoryId;
 	private String subcategoryName;
+	private String subcategoryDescription;
+	private int categoryId;
+	
+	@ManyToOne
+	@JoinColumn(name="categoryId" ,nullable=false,insertable=false,updatable=false)
+	private Category category;
+	
 	public int getSubcategoryId() {
 		return subcategoryId;
 	}
@@ -54,11 +61,4 @@ public class Subcategory {
 		this.category = category;
 	}
 
-	private String subcategoryDescription;
-	private int categoryId;
-	
-	@ManyToOne
-	@JoinColumn(name="categoryId" ,nullable=false,insertable=false,updatable=false)
-	private Category category;
-	
 }

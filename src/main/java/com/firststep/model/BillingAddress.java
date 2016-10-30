@@ -1,14 +1,15 @@
 package com.firststep.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Entity
-public class BillingAddress {
+public class BillingAddress implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -20,7 +21,16 @@ public class BillingAddress {
 	private int userId;
 	
 	@OneToOne
-	 private UserDetail userdetail;
+    private UserDetail userdetail;
+	
+	public UserDetail getUserdetail() {
+		return userdetail;
+	}
+
+	public void setUserdetail(UserDetail userdetail) {
+		this.userdetail = userdetail;
+	}
+
 	public int getBillingaddressId() {
 		return billingaddressId;
 	}

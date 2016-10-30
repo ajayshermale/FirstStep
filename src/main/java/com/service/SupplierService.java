@@ -14,16 +14,37 @@ import com.firststep.model.Supplier;
 public class SupplierService {
 
 	@Autowired
-	private SupplierDAOImpl supplierDAO;
+	private SupplierDAOImpl supplierDAOImpl;
 	
 	
 	@Transactional
 	public List<Supplier> SupplierList(){
-		return this.supplierDAO.SupplierList();
+		return this.supplierDAOImpl.SupplierList();
 		}
 	@Transactional
 	public void createSupplier(Supplier supplier){
-		supplierDAO.createSupplier(supplier);
+		supplierDAOImpl.createSupplier(supplier);
 	}
+	@Transactional
+	 public String stringsupplier()
+	 {
+		return this.supplierDAOImpl.stringsupplier();
+	 }
+	 @Transactional
+     public void deleteSupplier(int supplierId) {
+		 supplierDAOImpl.deleteSupplier(supplierId);
+	    	 }
+	    
+	  @Transactional
+      public Supplier getSupplierById(int supplierId)  {
+	    	
+	    	return supplierDAOImpl.getSupplierById(supplierId);
+	    }
+
+	  @Transactional
+      public Supplier getIdByName(String supplierName){
+	    	
+	    	return  supplierDAOImpl.getIdByName(supplierName);
+	    }
 	}
 

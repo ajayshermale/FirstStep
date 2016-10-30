@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.dao.SubcategoryDAO;
 import com.firststep.model.Subcategory;
+import com.google.gson.Gson;
 
 @Repository
 public class SubcategoryDAOImpl implements SubcategoryDAO
@@ -22,7 +23,7 @@ public class SubcategoryDAOImpl implements SubcategoryDAO
 
 	@SuppressWarnings("unchecked")
 	public List<Subcategory> listsubCategory() {
-		List<Subcategory> subcategorylist = sessionFactory.getCurrentSession().createQuery("from subcategory").getResultList();
+		List<Subcategory> subcategorylist = sessionFactory.getCurrentSession().createQuery("from Subcategory").getResultList();
 		return subcategorylist;
 	}
      
@@ -31,12 +32,12 @@ public class SubcategoryDAOImpl implements SubcategoryDAO
 		Gson list = new Gson();
 		List<Subcategory> subcategoryList = sessionFactory.getCurrentSession().createQuery("from Subcategory").getResultList();
 		String subcategoryjson= list.toJson(subcategoryList);
-		return subcategoryjson;;
+		return subcategoryjson;
 	}
 
 	@SuppressWarnings("unchecked")
 	public Subcategory getsubCatIdByName(String subcategoryName) {
-		String sql = "from Subcategory where subCategoryName= '" +subcategoryName+"'";
+		String sql = "from Subcategory where subcategoryName= '" +subcategoryName+"'";
 		List<Subcategory> list = sessionFactory.getCurrentSession().createQuery(sql).getResultList();
 		if(list!=null && !list.isEmpty())
 		{
@@ -45,18 +46,18 @@ public class SubcategoryDAOImpl implements SubcategoryDAO
 		else return null;
 	}
 
-	public void deleteSubCategory(int subCategoryId) 
+	public void deleteSubCategory(int subcategoryId) 
 	{
 		Subcategory subcategoryToDelete=new Subcategory();
-		subcategoryToDelete.setCategoryId(subCategoryId);
+		subcategoryToDelete.setSubcategoryId(subcategoryId);
 		sessionFactory.getCurrentSession().delete(subcategoryToDelete);
 			
 	}
-	
+   //edit	
 	@SuppressWarnings("unchecked")
-	public Subcategory getSubCatById(int subCategoryId) 
+	public Subcategory getSubCatById(int subcategoryId) 
 	{
-		String sql = "from Subcategory where subCategoryId=" +subCategoryId;
+		String sql = "from Subcategory where subcategoryId=" +subcategoryId;
 		List<Subcategory> list = sessionFactory.getCurrentSession().createQuery(sql).getResultList();
 		if(list!=null && !list.isEmpty())
 		{
@@ -65,5 +66,7 @@ public class SubcategoryDAOImpl implements SubcategoryDAO
 		else return null;
 		
 	}
+
+	
 
 }

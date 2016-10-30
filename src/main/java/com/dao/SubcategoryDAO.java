@@ -10,6 +10,6 @@ public interface SubcategoryDAO {
 	public List<Subcategory> listsubCategory();
 	public String stringsubcategory();
 	public Subcategory getsubCatIdByName(String subcategoryName);
-	public void deleteSubCategory(int subCategoryId);
-	public Subcategory getSubCatById(int subCategoryId);
+	public void deleteSubCategory(int subcategoryId);
+	public Subcategory getSubCatById(int subcategoryId);
 }

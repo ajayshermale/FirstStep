@@ -16,18 +16,44 @@ public class CategoryService
 {
 	
 	@Autowired
-	private CategoryDAOImpl categoryDAO;
+	private CategoryDAOImpl categoryDAOImpl;
 	
 	
 	@Transactional
 	public List<Category> CategoryList() {
-		return this.categoryDAO.CategoryList();
+		return this.categoryDAOImpl.CategoryList();
 	}
 		
-	
-	
 	@Transactional
+	//addsubCategory
 	public void createCategory(Category category) {
-		categoryDAO.createCategory(category);
+	      categoryDAOImpl.createCategory(category);
 	}
+
+	@Transactional
+	public String stringcategory(){
+		return categoryDAOImpl.stringcategory();
+	}
+
+
+    @Transactional
+    public Category getIdByName(String categoryName){
+    	
+    	return  categoryDAOImpl.getIdByName(categoryName);
+    }
+    
+    @Transactional
+    public void deleteCategory(int categoryId) {
+    	  categoryDAOImpl.deleteCategory(categoryId);
+    	 }
+    
+    @Transactional
+    public Category getCatById(int categoryId)  {
+    	
+    	return categoryDAOImpl.getCatById(categoryId);
+    }
 }
+
+
+
+

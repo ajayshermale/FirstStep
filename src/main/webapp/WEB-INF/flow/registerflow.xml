@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow
+                          http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+                        
+
+	<!-- demohandler is java class available through annotated registerhandler.java class.here we are calling initFlow() method. -->
+	 <on-start>
+	  <evaluate expression="registerHandler.initFlow()" result="flowScope.userDetail"/>
+	</on-start>
+	
+	<view-state id="start" view="registration" model="userDetail">
+	   <transition on="submit" to="validate"/>
+	</view-state>
+	
+	<action-state id="validate">
+		<evaluate expression="registerHandler.validateDetails(userDetail,messageContext)"></evaluate>
+		<transition on="success" to="confirmDetails" />
+		<transition on="failure" to="start" />
+	</action-state>
+	
+	<view-state id="confirmDetails" view="confirmDetails" model="userDetail">
+		<transition on="edit" to="start" />
+		<transition on="submit" to="shippingaddress" />
+	</view-state>
+     
+     <!-- address -->
+    <view-state id="shippingaddress" view="shippingaddress" model="shippingAddress">
+	   <transition on="submit" to="addshippingadderss"/>
+	   <transition on="failure" to="start" />
+	</view-state>
+	
+	<action-state id="addshippingadderss">
+		<evaluate expression="registerHandler.addShippingAddress(shippingAddress)"></evaluate>
+		<transition on="success" to="billingaddress" />
+	</action-state>
+	
+	 <view-state id="billingaddress" view="billingaddress" model="billingAddress">
+	   <transition on="submit" to="confirmadderess"/>
+	</view-state>
+	
+	
+	<!--    <action-state id="validateaddress">
+		<evaluate expression="registerHandler.addshippingAddress(shippingAddress,messageContext)"></evaluate>
+		<transition on="success" to="confirmDetails" />
+		<transition on="failure" to="start" />
+	</action-state>-->
+	
+	
+	
+    <!-- these events are available in every state-->
+	  <global-transitions>
+		<transition on="home" to="toHome" />
+		<transition on="error" to="toException" />
+    	</global-transitions>
+    </flow>
+
+                          
