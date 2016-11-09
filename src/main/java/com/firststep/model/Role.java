@@ -5,10 +5,14 @@ import javax.persistence.Entity;
 
 import javax.persistence.Id;
 
+import com.google.gson.annotations.Expose;
+@SuppressWarnings("serial")
 @Entity
 public class Role  implements Serializable {
 	@Id
+	@Expose
 	private int roleId;
+	@Expose
 	private String rolename;
 	
 	public int getRoleId() {

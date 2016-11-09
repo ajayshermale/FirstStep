@@ -12,26 +12,29 @@
 
 </head>
 <body>
+<br>
 <form:form method="POST" commandName="shippingAddress">
-<form:input path="shippingaddressId" hidden="true"/>
 <div class="container">
-<label>SHIPPING ADDRESS: </label></div>
+<label>SHIPPING ADDRESS: </label>
 <div>
-<label>Landmark</label>
-<form:input path="landmark"/>
-<label>State</label>
-<form:input path="state"/>
+<label>Address</label>
+<form:input path="landmark" class="form-control"/>
+<br>
 <label>City</label>
 <form:input path="city"/>
-<label>Pincode</label>
-<form:input path="pincode"/>
+
+<label>State</label>
+<form:input path="state"/>
+
+<label>Pin Code</label>
+<form:input path="pincode"/><br>
 </div>
 <div>
 
 </div>
  <div class="checkbox">
 <input name="_eventId_submit" type="submit" value="Submit" />
-</div>
+</div></div>
 </form:form>
   
 </body>

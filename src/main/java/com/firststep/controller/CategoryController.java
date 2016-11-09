@@ -46,6 +46,7 @@ public class CategoryController {
 	@RequestMapping(value="/editCategory-{categoryId}")
 	public String getCatById(@PathVariable ("categoryId")int categoryId,Model model){
 		model.addAttribute("category",this.categoryService.getCatById(categoryId));
+		model.addAttribute("categoryjson",this.categoryService.stringcategory());
 		return "categories";
 	}		
 }

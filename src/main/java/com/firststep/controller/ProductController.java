@@ -7,18 +7,24 @@ import java.io.FileOutputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.firststep.model.Product;
 import com.firststep.model.Subcategory;
 import com.firststep.model.Supplier;
+import com.firststep.model.UserDetail;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.service.ProductService;
 import com.service.SubcategoryService;
-import com.service.SupplierService;
+//import com.service.SupplierService;
+import com.service.UserService;
 
 @Controller
 public class ProductController 
@@ -28,9 +34,12 @@ public class ProductController
 	
 	@Autowired
 	private SubcategoryService subcategoryService;
-	
+     
 	@Autowired
-	private SupplierService supplierService;
+    private UserService userService;
+	
+	//@Autowired
+	//private SupplierService supplierService;
 	
 	@RequestMapping("/product")
     public String stringproduct(Model model)
@@ -39,25 +48,55 @@ public class ProductController
 		model.addAttribute("productjson",this.productService.stringproduct());
 	//	model.addAttribute("listproduct",this.productService.listproduct());
 		model.addAttribute("listsubCategory",this.subcategoryService.listsubCategory());
-		model.addAttribute("SupplierList",this.supplierService.SupplierList());
+		model.addAttribute("SupplierList",this.userService.SupplierList());
         return "product";
     }
 	
-	@RequestMapping(value="/add/product", method=RequestMethod.POST)
-	 public String addproduct(Product product)
+	@RequestMapping(value="/addproduct", method=RequestMethod.POST)
+	 public String addproduct(@ModelAttribute("product") Product product)
 	{
 		Subcategory subcategory = subcategoryService.getsubCatIdByName(product.getSubcategory().getSubcategoryName());
 		subcategoryService.createsubCategory(subcategory);
 		product.setSubcategory(subcategory);
 		product.setSubcategoryId(subcategory.getSubcategoryId());
 		
-		Supplier supplier = supplierService.getIdByName(product.getSupplier().getSupplierName());
-		supplierService.createSupplier(supplier);
+		
+		Supplier supplier = userService.getIdByName(product.getSupplier().getSupplierCompanyName())	;
+		userService.SaveOrUpdateSupplier(supplier);
 		product.setSupplier(supplier);
-		product.setSupplierId(supplier.getSupplierId());
+		product.setSupplierAddressId(supplier.getSupplierAddressId());
 		this.productService.addproduct(product);
-		return "redirect:/product";
-	}
+		
+		
+		String path="C:\\Users\\Rahul\\workspacerefresh\\FirstStep\\src\\main\\webapp\\resources\\images\\";
+		path=path+String.valueOf(product.getProductId())+".jpg";
+		File f=new File(path);
+		System.out.println("path is"+path);
+		MultipartFile filedet=product.getProductImage();
+		
+		if(!filedet.isEmpty())
+		{
+			try
+			{
+			  byte[] bytes=filedet.getBytes();
+			  FileOutputStream fos=new FileOutputStream(f);
+              			BufferedOutputStream bs=new BufferedOutputStream(fos);
+              			bs.write(bytes);
+              			bs.close();
+             			 System.out.println("File Uploaded Successfully");
+			}
+			catch(Exception e)
+			{
+				System.out.println("Exception Arised"+e);
+			}
+		}
+		else
+		{
+			System.out.println("File is Empty");
+		}
+			return "redirect:/product";
+			}
+
 	
 	@RequestMapping(value="/deleteproduct-{productId}", method = RequestMethod.GET)
 	public String deleteProduct(@PathVariable ("productId")int productId) 
@@ -70,34 +109,25 @@ public class ProductController
 	public String editProduct(@PathVariable("productId") int productId, Model model)
 	{
 		model.addAttribute("listsubCategory",this.subcategoryService.listsubCategory());
-		model.addAttribute("SupplierList",this.supplierService.SupplierList());
+		model.addAttribute("SupplierList",this.userService.SupplierList());
 		model.addAttribute("product",productService.getProductById(productId));
+		model.addAttribute("productjson",this.productService.stringproduct());
 		return "product";
 		
 	}
 	
-	/*@RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
-	public String uploadFileHandler(@RequestParam("productId") int productId)
+	@RequestMapping(value= "/viewproduct-{productId}-product" )
+	public ModelAndView viewProduct(@PathVariable("productId") int productId,Product product)
 	{
-		
-		Product product=productService.getProductById(productId);
+		 product =productService.getProductById(productId);
+		 Gson g = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+		 String productjson= g.toJson(product);
 		 
-				byte[] bytes = file.getBytes();
-
-				// Creating the directory to store file
-				String rootPath = System.getProperty("catalina.home");
-				File dir = new File(rootPath + File.separator + "tmpFiles");
-				if (!dir.exists())
-					dir.mkdirs();
-
-				// Create the file on server
-				File serverFile = new File(dir.getAbsolutePath()
-						+ File.separator + name);
-				BufferedOutputStream stream = new BufferedOutputStream(
-						new FileOutputStream(serverFile));
-				stream.write(bytes);
-				stream.close();
-			
-			}	*/
+		 ModelAndView model = new ModelAndView("viewproduct");
+		model.addObject("productview",productjson);
+		 
+		return model;
+	}
+		
 }
 

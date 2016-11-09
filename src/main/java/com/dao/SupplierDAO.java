@@ -7,9 +7,9 @@ import com.firststep.model.Supplier;
 public interface SupplierDAO {
 
 	public List<Supplier> SupplierList();
-    public void createSupplier(Supplier supplier);
+    public void SaveOrUpdate(Supplier supplierCompanyName);
     public String stringsupplier();
-    public Supplier  getIdByName(String supplierName);
-    public void deleteSupplier(int supplierId);
-	public Supplier getSupplierById(int supplierId);
+    public Supplier  getIdByName(String supplier);
+    // public void deleteSupplier(int supplierId);
+	//public Supplier getSupplierById(int supplierId);
 }

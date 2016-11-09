@@ -3,7 +3,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ include file="index.jsp" %>
+<%@ include file="header.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
@@ -11,10 +11,12 @@
 <title>Login Page</title>
 </head>
 <body>
+<div class="container side-collapse-container">
+<div class="container">
 	<h3>Login with Username and Password</h3>
 
 	<form method="post" action="perform_login">
-	
+
 		<table>
 			<tr>
 				<td>UserName:</td>
@@ -29,6 +31,7 @@
 					value="Login" /></td>
 			</tr>
 		</table>
-	</form>
+		</form>
+		</div></div>
 </body>
-</html>
+<%@ include file="footer.jsp" %>

@@ -57,20 +57,20 @@ public class UserController {
 	{    
 		
 		UserDetail userdetail=new UserDetail();
-		BillingAddress billingAddress= new  BillingAddress();
-		ShippingAddress shippingAddress= new ShippingAddress();
+	   BillingAddress billingAddress= new  BillingAddress();
+	   ShippingAddress shippingAddress= new ShippingAddress();
 		
 		
 		userdetail.setBillingAddress(billingAddress);
-		userdetail.setShippingAddress(shippingAddress);
-		model.addAttribute("supplierdetail", new UserDetail());
-		return "newsupplier";
+	    userdetail.setShippingAddress(shippingAddress);
+		model.addAttribute("supplier", new UserDetail());
+		return "redirect:/sup";
 		
 	}
 	
 	@RequestMapping(value="/add/newsupplier",method=RequestMethod.POST)
 	//
-	public String addSupplierDetail(@ModelAttribute("supplierdetail") UserDetail userdetail)
+	public String addSupplierDetail(@ModelAttribute("supplier") UserDetail userdetail)
 	{
 		this.userService.createSupplier(userdetail);
 		return "redirect:/newsupplier";
@@ -82,7 +82,7 @@ public class UserController {
 	}
 	
 	
-	@RequestMapping(value="/logout", method = RequestMethod.GET)
+	@RequestMapping(value="/perform_logout", method = RequestMethod.GET)
 	public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
 	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    if (auth != null){    
@@ -92,5 +92,24 @@ public class UserController {
 	}
 
 	
+	@RequestMapping("/registeradmin")
+	public String registerAdmin(Model model)
+	{    
+		UserDetail userdetail=new UserDetail();
+		
+		model.addAttribute("admin", new UserDetail());
+	     return"/registeradmin";
+	}	
+		
+
+//	@RequestMapping(value="/addregisteradmin",method=RequestMethod.POST)
+//	//
+//	public String addRegisterAdmin(@ModelAttribute("admin") UserDetail userdetail)
+//	{
+//
+//		this.userService.createAdmin(userdetail);
+//		return "redirect:/";
+//     }
+//	
 	
 }

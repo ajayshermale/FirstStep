@@ -2,7 +2,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ include file="index.jsp" %>
+<%@ include file="header.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,19 +10,29 @@
       <script type="text/javascript" src="resources/js/jquery-3.1.1.min.js"></script>
       <script src="resources/js/angular.min.js"></script>
   <style> 
-  .categories{
-    width:70%
- padding: 0;
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
 }
  </style>
 </head>
-<body class="categories">
+<body>
+<div class="container">
 <form:form method="POST" action="add/categories" modelAttribute="category">
 <form:input path="categoryId" hidden="true"/>
+<div>
 <label>CategoryName</label>
-<form:input path="categoryName"/>
+<form:input path="categoryName" class="form-control"/>
 <label>CategoryDescription</label>
-<form:input path="categoryDescription"/>
+<form:input path="categoryDescription" class="form-control"/>
+</div>
 <input type="submit" value="Submit"/>
 </form:form>
 <div ng-app="myApp" ng-controller="myCtrl">
@@ -31,7 +41,7 @@
 <tr>
 <th>CategoryId</th>
 <th>CategoryName</th>
-<th>CategoryDesccription</th>
+<th>CategoryDescription</th>
 <th>Delete</th>
 <th>Edit</th>
 </tr>
@@ -52,5 +62,7 @@ var app = angular.module('myApp', []);
     $scope.abc = ${categoryjson};
  });
 </script> 
+</div>
 </body>
 </html>
+<%@ include file="footer.jsp" %>

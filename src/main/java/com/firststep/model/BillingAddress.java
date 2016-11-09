@@ -8,16 +8,25 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import com.google.gson.annotations.Expose;
+
+@SuppressWarnings("serial")
 @Entity
 public class BillingAddress implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Expose
 	private int billingaddressId;
+	@Expose
 	private String landmark;
+	@Expose
 	private String state;
+	@Expose
 	private String city;
+	@Expose
 	private int pincode;
+	@Expose
 	private int userId;
 	
 	@OneToOne

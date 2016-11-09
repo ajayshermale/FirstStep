@@ -8,12 +8,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 import com.firststep.model.User;
-
+import com.google.gson.annotations.Expose;
+@SuppressWarnings("serial")
 @Entity
 public class Cart  implements Serializable{
 
 	@Id
+	@Expose
 	private int cartId;
+	@Expose
 	private int userId;
 	
 	@OneToOne

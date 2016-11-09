@@ -1,0 +1,59 @@
+
+
+
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow
+                          http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+                    
+    <!-- demohandler is java class available through annotated registerhandler.java class.here we are calling initFlow() method. -->
+	 <on-start>
+	  <evaluate expression="registerHandler.initFlow()" result="flowScope.userDetail"/>
+	</on-start>
+	
+	<view-state id="start" view="registration" model="userDetail">
+	   <transition on="submit" to="validate"/>
+	</view-state>
+	
+	<action-state id="validate">
+		<evaluate expression="registerHandler.validateDetails(userDetail,messageContext)"></evaluate>
+		<transition on="success" to="confirmDetails" />
+		<transition on="failure" to="start" />
+	</action-state>
+	
+	<view-state id="confirmDetails" view="confirmDetails" model="userDetail">
+		<transition on="edit" to="start" />
+		<transition on="submit" to="supplieraddress" />
+	</view-state>
+	
+	 <view-state id="supplieraddress" view="supplieraddress" model="supplier">
+	   <transition on="submit" to="addSupplierDetails"/>
+	   <transition on="failure" to="start" />
+	</view-state>
+	<action-state id="addSupplierDetails">
+		<evaluate expression="registerHandler.addSupplierDetails(supplier)"></evaluate>
+		<transition on="success" to="save" />
+	</action-state>
+	
+	<action-state id="save">
+		<evaluate expression="registerHandler.saveOrUpdateSupplier(flowScope.userDetail,supplier)"></evaluate>
+		<transition on="success" to="saveSupplier" />
+	</action-state>
+	
+	<action-state id="saveSupplier">
+		<evaluate expression="userService.createSupplier(userDetail)" result="userDetail"></evaluate>
+		<transition on="success" to="toHome" />
+	</action-state>
+	
+		<end-state id="index" view="index"/>
+	<end-state id="toHome" view="externalRedirect:contextRelative:/" />
+	<end-state id="toException" view="externalRedirect:contextRelative:exception.jsp" />
+	
+	
+    <!-- these events are available in every state-->
+	  <global-transitions>
+		<transition on="home" to="toHome" />
+		<transition on="error" to="toException" />
+    	</global-transitions>
+    </flow>
+	

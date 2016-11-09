@@ -2,15 +2,22 @@ package com.firststep.model;
 
 import java.io.Serializable;
 
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+
+import com.google.gson.annotations.Expose;
+
+@SuppressWarnings("serial")
 @Entity
 public class UserRole  implements Serializable {
 
 	@Id
+	@Expose
 	private int userId;
+	@Expose
 	private int roleId;
 	
 	@OneToOne

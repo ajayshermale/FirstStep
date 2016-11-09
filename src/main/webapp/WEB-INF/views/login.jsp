@@ -11,6 +11,7 @@
 <title>Login Page</title>
 </head>
 <body>
+<div class="container side-collapse-container">
 <div class="container">
 	<h3>Login with Username and Password</h3>
 
@@ -21,16 +22,18 @@
 				<td>UserName:</td>
 				<td><input type='text' name='username' /></td>
 			</tr>
+			
 			<tr>
 				<td>Password:</td>
 				<td><input type='password' name='password' /></td>
-			</tr>
-			<tr>
+			</tr>	
+			
+			<tr> 
 				<td colspan='2'><input name="submit" type="submit"
 					value="Login" /></td>
 			</tr>
 		</table>
 		</form>
-		</div>
+		</div></div>
 </body>
 <%@ include file="footer.jsp" %>

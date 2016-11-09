@@ -26,19 +26,21 @@ td, th {
 </style>
 </head>
 <body>
+<br>
 <div class="container">
 <form:form method="POST" action="add/subCategory" modelAttribute="subCategory">
 <form:input path="subcategoryId" hidden="true"/>
 <label>SubcategoryName</label>
-<form:input path="subcategoryName"/>
+<form:input path="subcategoryName" class="form-control"/><br>
 <label>SubcategoryDescription</label>
-<form:input path="subcategoryDescription"/>
+<form:input path="subcategoryDescription" class="form-control"/><br>
 <label>CategoryName</label>
 <form:select path="category.categoryName" items="${listCategory}" itemValue="categoryName" itemLabel="categoryName">
-</form:select>
+</form:select><br>
 <input type="submit" value="Submit"/>
-</form:form>
+</form:form><br>
 <div ng-app="myApp" ng-controller="myCtrl">
+<div style="overflow-x:auto;">
 <table>
 <tbody>
 <tr>
@@ -53,8 +55,8 @@ td, th {
       <td>{{x.subcategoryId}}</td>
       <td>{{x.subcategoryName}}</td>
       <td>{{x.subcategoryDescription}}</td>
-      <td> <a href="deletesubCategory-{{x.subcategoryId}}">Delete</a></td>
-      <td><a href="editsubCategory-{{x.subcategoryId}}">Edit</a></td>
+      <td> <a href="deletesubCategory-{{x.subcategoryId}}" class="btn btn-default">Delete</a></td>
+      <td><a href="editsubCategory-{{x.subcategoryId}}" class="btn btn-default">Edit</a></td>
 </tr>
 </tbody>
 </table>

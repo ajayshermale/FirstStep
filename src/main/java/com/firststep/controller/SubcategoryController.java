@@ -57,6 +57,7 @@ public class SubcategoryController {
 	{
 		model.addAttribute("listCategory",this.categoryService.CategoryList());
 		model.addAttribute("subCategory",subcategoryService.getSubCatById(subcategoryId));
+		model.addAttribute("subCategoryjson",this.subcategoryService.stringsubCategory());
 		return "subCategory";
 	}
 

@@ -10,20 +10,30 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+import com.google.gson.annotations.Expose;
+
+@SuppressWarnings("serial")
 @Entity
 public class UserDetail  implements Serializable {
 @Id
-
+@Expose
 private int userId;
+@Expose
 private String password;
+@Expose
 private String username;
+@Expose
 private String userfirstname;
+@Expose
 private String userlastname;
+@Expose
 private String email;
-private int contactnumber;
+@Expose
+private String contactnumber;
+@Expose
 private int roleId;
+@Expose
 private int cartId;
-
 
 @OneToOne
 @JoinColumn(name="userId" ,nullable=false,insertable=false,updatable=false)
@@ -45,6 +55,20 @@ private BillingAddress billingAddress;
 @JoinColumn(name="roleId" ,nullable=false,insertable=false,updatable=false)
 private Role role;
 
+@OneToOne
+@JoinColumn(name="supplierAddressId")
+
+private Supplier supplier;
+
+
+public Supplier getSupplier() {
+	return supplier;
+}
+
+public void setSupplier(Supplier supplier) {
+	this.supplier = supplier;
+}
+
 public Role getRole() {
 	return role;
 }
@@ -56,6 +80,7 @@ public void setRole(Role role) {
 public int getUserId() {
 	return userId;
 }
+
 
 public void setUserId(int userId) {
 	this.userId = userId;
@@ -93,11 +118,13 @@ public void setEmail(String email) {
 	this.email = email;
 }
 
-public int getContactnumber() {
+
+
+public String getContactnumber() {
 	return contactnumber;
 }
 
-public void setContactnumber(int contactnumber) {
+public void setContactnumber(String contactnumber) {
 	this.contactnumber = contactnumber;
 }
 

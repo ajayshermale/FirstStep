@@ -10,32 +10,65 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+  <script>$(document).ready(function() {   
+      var sideslider = $('[data-toggle=collapse-side]');
+      var sel = sideslider.attr('data-target');
+      var sel2 = sideslider.attr('data-target-2');
+      sideslider.click(function(event){
+          $(sel).toggleClass('in');
+          $(sel2).toggleClass('out');
+      });
+  });</script>
+ 
   <style>
  /* Remove the navbar's default margin-bottom and rounded borders */
-    .navbar { 
-      height:40px;
-      border-radius: 5px;
-      -moz-border-radius: 5px;
-      -webkit-border-radius: 5px;
-    }
+  
+  body {
+          padding-top: 50px;
+          position: relative;
+      }
+      
+      pre {
+          tab-size: 8;
+      }
+     @media screen and (max-width: 768px) {
+          .side-collapse-container{
+              width:100%;
+              position:relative;
+              left:0;
+              transition:left .4s;
+          }
+          .side-collapse-container.out{
+              left:200px;
+          }
+          .side-collapse {
+              top:50px;
+              bottom:0;
+              left:0;
+              width:200px;
+              position:fixed;
+              overflow:hidden;
+              transition:width .4s;
+          }
+          .side-collapse.in {
+              width:0;
+          }
   
   </style>
 </head>
 <body class="body">
+<header role="banner" class="navbar navbar-fixed-top navbar-inverse">
 
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
+  
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
+<button data-toggle="collapse-side" data-target=".side-collapse" data-target-2=".side-collapse-container" type="button" class="navbar-toggle pull-left"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
       <a class="navbar-brand" href="#">Logo</a>
     </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
+    <div class="navbar-inverse side-collapse in">
+    <nav role="navigation" class="navbar-collapse">
       <ul class="nav navbar-nav">
-        <li ><a href="">Home</a></li>
+        <li ><a href="http://localhost:8080/FirstStep/">Home</a></li>
         <li><a href="#">About</a></li>
         <li><a href="#">Projects</a></li>
         <li><a href="#">Contact</a></li>
@@ -50,13 +83,38 @@
         </c:if>
         
         <c:if test="${pageContext.request.userPrincipal.name != null}">
-            <li><a href="logout"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
+            <li><a href="perform_logout"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
          </c:if>
         
       </ul>
+      </nav>
     </div>
   </div>
+</header>
+
+<!-- admin nav bar -->
+ 
+<sec:authorize access="hasRole('ROLE_ADMIN')">
+       
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">
+      <sec:authentication property="principal.username" var="username" />
+        <li><a> ${username}</a></li></a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li ><a href="categories">CATEGORY</a></li>
+      <li><a href="subCategory">SUBCATEGORY</a></li>
+      <li><a href="product">PRODUCT</a></li>
+      <li><a href="newsupplier">SUPPLIER</a></li>
+    </ul>
+  </div>
 </nav>
+</sec:authorize> 
+
+
+
 
 </body>
 </html>

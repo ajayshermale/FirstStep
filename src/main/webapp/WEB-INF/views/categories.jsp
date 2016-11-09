@@ -24,23 +24,27 @@ td, th {
  </style>
 </head>
 <body>
+<sec:authorize access="hasRole('ROLE_ADMIN')">
+<br>
 <div class="container">
 <form:form method="POST" action="add/categories" modelAttribute="category">
 <form:input path="categoryId" hidden="true"/>
-
+<div>
 <label>CategoryName</label>
-<form:input path="categoryName"/>
+<form:input path="categoryName" class="form-control"/><br>
 <label>CategoryDescription</label>
-<form:input path="categoryDescription"/>
+<form:input path="categoryDescription" class="form-control"/>
+</div>
+<br>
 <input type="submit" value="Submit"/>
-</form:form>
-<div ng-app="myApp" ng-controller="myCtrl">
+</form:form><br>
+<div ng-app="myApp" ng-controller="myCtrl"><div style="overflow-x:auto;">
 <table>
 <tbody>
 <tr>
 <th>CategoryId</th>
 <th>CategoryName</th>
-<th>CategoryDesccription</th>
+<th>CategoryDescription</th>
 <th>Delete</th>
 <th>Edit</th>
 </tr>
@@ -48,20 +52,20 @@ td, th {
       <td>{{x.categoryId}}</td>
       <td>{{x.categoryName}}</td>
       <td>{{x.categoryDescription}}</td>
-      <td><a href="deleteCategory-{{x.categoryId}}">Delete</a></td>
-      <td><a href="editCategory-{{x.categoryId}}">Edit</a></td>
+      <td><a href="deleteCategory-{{x.categoryId}}" class="btn btn-default">Delete</a></td>
+      <td><a href="editCategory-{{x.categoryId}}" class="btn btn-default">Edit</a></td>
 </tr>
 </tbody>
 </table>
 </div>
-
+</div></div>
 <script>
 var app = angular.module('myApp', []);
  app.controller('myCtrl', function($scope) {
     $scope.abc = ${categoryjson};
  });
 </script> 
-</div>
+</sec:authorize> 
 </body>
 </html>
 <%@ include file="footer.jsp" %>

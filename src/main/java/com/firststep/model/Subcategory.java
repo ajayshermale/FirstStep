@@ -1,5 +1,7 @@
 package com.firststep.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,14 +9,20 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.google.gson.annotations.Expose;
+@SuppressWarnings("serial")
 @Entity
-public class Subcategory {
+public class Subcategory implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Expose
 	private int subcategoryId;
+	@Expose
 	private String subcategoryName;
+	@Expose
 	private String subcategoryDescription;
+	@Expose
 	private int categoryId;
 	
 	@ManyToOne

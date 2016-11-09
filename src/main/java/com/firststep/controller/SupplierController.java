@@ -1,3 +1,4 @@
+/*
 package com.firststep.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,4 +45,4 @@ private SupplierService supplierService;
 		return "supplier";
 	
 }
-}
+}*/

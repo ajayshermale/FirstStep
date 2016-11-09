@@ -24,53 +24,105 @@ td, th {
  </style>
 </head>
 <body>
-<div class="container">
-<form:form method="POST" action="add/product" modelAttribute="product">
+ <br>
+ <div class="container side-collapse-container">
+<form:form method="POST" action="addproduct" modelAttribute="product"  enctype="multipart/form-data">
 <form:input path="productId" hidden="true"/>
-<td><label>PRODUCT NAME</label></td>
-<form:input path="productName"/>
-<td><label>PRODUCT DESCRIPTION</label></td>
-<form:input path="productDescription"/>
-<td><label>PRODUCT PRISE</label></td>
-<form:input path="productPrice"/>
+
+<div class="container">
+<label>PRODUCT NAME</label>
+<form:input path="productName"  class="form-control"/>
+<br>
+<label>PRODUCT DESCRIPTION</label>
+<form:input path="productDescription"  class="form-control"/>
+<br>
+<label>PRODUCT PRISE</label>
+<form:input path="productPrice"  class="form-control"/>
+<br>
+
+<br>
+<label>Stock Keeping Unit</label>
+<form:input path="sku"  />
+
+<label>Shoe Type</label>
+<form:input path="shoeType" />
+<br>
+<br>
+<label>Brands</label>
+<form:input path="brands" />
+
+<label>Colour</label>
+<form:input path="colours" />
+<br>
+<br>
+<label>Upper Material</label>
+<form:input path="upperMaterial" />
+
+<label>Inner material</label>
+<form:input path="innerMaterial" />
+<br>
+<br>
+<label>Sole Material</label>
+<form:input path="soleMaterial" />
+
+<label>Heel Height</label>
+<form:input path="heelHeight"  />
+<br>
+
+<br>
+
 
 <label>SUBCATEGORY NAME</label>
 <form:select path="Subcategory.subcategoryName" items="${listsubCategory}" itemValue="subcategoryName" itemLabel="subcategoryName">
 </form:select>
-<label>SUPPLIER NAME</label>
-<form:select path="Supplier.supplierName" items="${SupplierList}" itemValue="supplierName" itemLabel="supplierName">
+
+<label>SUPPLIERCOMPANY NAME</label>
+<form:select path="Supplier.supplierCompanyName" items="${SupplierList}" itemValue="supplierCompanyName" itemLabel="supplierCompanyName">
 </form:select>
+<br><br>
+<div class="form-group">
+<label for="image">Upload File</label>
+ <form:input class="form-control" path="productImage" type="file" value="Upload Image"/>
+</div> 
+
 <input type="submit" value="Submit"/>
 </form:form>
+
 <div ng-app="supplierapp" ng-controller="supplierCtrl">
+<div style="overflow-x:auto;">
+<div class="container">
 <table>
-<tbody>
+<tbody><br>
 <tr>
 <th>ProductId</th>
 <th>ProductName</th>
 <th>ProductDescription</th>
 <th>ProductPrise</th>
+<th>productImage</th>
 <th>Delete</th>
 <th>Edit</th>
+<th>view</th>
 </tr>
 <tr ng-repeat="x in abc">
       <td>{{x.productId}}</td>
       <td>{{x.productName}}</td>
       <td>{{x.productDescription}}</td>
       <td>{{x.productPrice}}</td>
-      <td><a href="deleteproduct-{{x.productId}}">Delete</a></td>
-      <td><a href="editproduct-{{x.productId}}">Edit</a></td>
+      <td><img  src="resources/images/{{x.productId}}.jpg" width="100px" height="100px"> 
+      <td><a href="deleteproduct-{{x.productId}}" class="btn btn-default">Delete</a></td>
+      <td><a href="editproduct-{{x.productId}}" class="btn btn-default">Edit</a></td>
+      <td><a href="viewproduct-{{x. productId}}-product" class="btn btn-default">View</a></td>
 </tr>
 </tbody>
 </table>
 </div>
 
-<script>
+ <script> 
 var app = angular.module('supplierapp', []);
  app.controller('supplierCtrl', function($scope) {
     $scope.abc = ${productjson};
  });
-</script>  
+ </script>   
 </div>
 </body>
 </html>

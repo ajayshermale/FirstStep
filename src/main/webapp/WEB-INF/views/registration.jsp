@@ -12,6 +12,7 @@
 
 </head>
 <body>
+<br>
 <form:form method="POST" commandName="userDetail">
 <form:input path="userId" hidden="true"/>
 <div class="container">
@@ -21,27 +22,31 @@
 					<c:forEach items="${flowRequestContext.messageContext.getMessagesBySource('username')}" var="err">
 					  <div><span>${err.text}</span></div>
 					</c:forEach>
-					
+					<br>
 <label>Password</label>
 <form:input path="password" class="form-control"/>
-
+<br>
 <label>UserFirstname</label>
 <form:input path="userfirstname" class="form-control"/>
-
+<br>
 <label>UserLastname</label>
 <form:input path="userlastname" class="form-control"/>
-
+<br>
 <label>Email</label>
 <form:input path="email" class="form-control"/>
 
-<c:forEach items="${flowRequestContext.messageContext.getMessagesBySource('email')}" var="err">
+                   <c:forEach items="${flowRequestContext.messageContext.getMessagesBySource('email')}" var="err">
 					  <div><span>${err.text}</span></div>
 					</c:forEach>
-					
+<br>					
 <label>ContactNumber</label>
 <form:input path="contactnumber" class="form-control"/>
-<div>
 
+                    <c:forEach items="${flowRequestContext.messageContext.getMessagesBySource('contactnumber')}" var="err">
+					  <div><span>${err.text}</span></div>
+				   	</c:forEach>
+
+<br>
 <!-- <label>SHIPPING ADDRESS: </label></div> -->
 <!-- <div> -->
 <!-- <label>Landmark</label> -->
@@ -66,12 +71,12 @@
 <%-- <form:input path="billingAddress.pincode"/> --%>
 <!-- </div> -->
 
-</div>
+
  <div class="checkbox">
 <input name="_eventId_submit" type="submit" value="Submit" />
 </div>
+ </div> 
 </form:form>
-  
 </body>
 </html>
 <%@ include file="footer.jsp" %>

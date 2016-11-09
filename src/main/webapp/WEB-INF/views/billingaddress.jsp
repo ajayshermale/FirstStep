@@ -3,6 +3,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="header.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,16 +13,19 @@
 <body>
 <form:form method="POST" commandName="billingAddress">
 <form:input path="billingaddressId" hidden="true"/>
+<br>
 <div class="container">
-<label>BILLING ADDRESS: </label></div>
+<label>BILLING ADDRESS: </label>
 <div>
-<label>Landmark</label>
-<form:input path="landmark"/>
-<label>State</label>
-<form:input path="state"/>
+<label>Address</label>
+<form:input path="landmark" class="form-control"/>
+<br>
 <label>City</label>
 <form:input path="city"/>
-<label>Pincode</label>
+<label>State</label>
+<form:input path="state"/>
+
+<label>Pin Code</label>
 <form:input path="pincode"/>
 </div>
 <div>
@@ -29,8 +33,9 @@
 </div>
  <div class="checkbox">
 <input name="_eventId_submit" type="submit" value="Submit" />
-</div>
+</div></div>
 </form:form>
   
 </body>
 </html>
+<%@ include file="footer.jsp" %>

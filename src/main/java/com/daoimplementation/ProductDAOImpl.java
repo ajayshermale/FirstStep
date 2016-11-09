@@ -10,6 +10,7 @@ import com.dao.ProductDAO;
 import com.firststep.model.Product;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 @Repository
 public class ProductDAOImpl implements ProductDAO
@@ -33,7 +34,7 @@ public class ProductDAOImpl implements ProductDAO
 	@SuppressWarnings("unchecked")
 	public String stringproduct() 
 	{
-		Gson list = new Gson();
+		Gson list = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 		List<Product> productlist = sessionFactory.getCurrentSession().createQuery("from Product").getResultList();
 		String productjson= list.toJson(productlist);
 		return productjson ;
@@ -46,6 +47,7 @@ public class ProductDAOImpl implements ProductDAO
 		sessionFactory.getCurrentSession().delete(productToDelete);
 	}
 
+	@SuppressWarnings("unchecked")
 	public Product getProductById(int productId) {
 		
 		String sql = "from Product where productId=" +productId;

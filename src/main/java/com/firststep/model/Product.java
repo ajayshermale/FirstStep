@@ -1,35 +1,136 @@
 package com.firststep.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
+import org.springframework.web.multipart.MultipartFile;
+
+import com.google.gson.annotations.Expose;
+@SuppressWarnings("serial")
 @Entity
-public class Product {
+public class Product implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Expose
 	private int productId;
+	@Expose
 	private String productName;
+	@Expose
 	private String productDescription;
+	@Expose
 	private String productPrice;
 	
+	@Transient
+	private MultipartFile productImage;
+	@Expose
 	private int subcategoryId;
-    private int supplierId;
-    
-    @ManyToOne
+	@Expose
+    private int supplierAddressId;
+//	@Expose
+//    private int userId;
+//    
+	@Expose
+	private String sku;
+	@Expose
+	private String shoeType;
+	@Expose
+	private String brands;
+	@Expose
+	private String colours;
+	@Expose
+	private String upperMaterial;
+	@Expose
+	private String innerMaterial;
+	@Expose
+	private String soleMaterial;
+	@Expose
+	private String heelHeight;
+	
+	
+    public String getSku() {
+		return sku;
+	}
+
+	public void setSku(String sku) {
+		this.sku = sku;
+	}
+
+	public String getShoeType() {
+		return shoeType;
+	}
+
+	public void setShoeType(String shoeType) {
+		this.shoeType = shoeType;
+	}
+
+	public String getBrands() {
+		return brands;
+	}
+
+	public void setBrands(String brands) {
+		this.brands = brands;
+	}
+
+	public String getColours() {
+		return colours;
+	}
+
+	public void setColours(String colours) {
+		this.colours = colours;
+	}
+
+	public String getUpperMaterial() {
+		return upperMaterial;
+	}
+
+	public void setUpperMaterial(String upperMaterial) {
+		this.upperMaterial = upperMaterial;
+	}
+
+	public String getInnerMaterial() {
+		return innerMaterial;
+	}
+
+	public void setInnerMaterial(String innerMaterial) {
+		this.innerMaterial = innerMaterial;
+	}
+
+	public String getSoleMaterial() {
+		return soleMaterial;
+	}
+
+	public void setSoleMaterial(String soleMaterial) {
+		this.soleMaterial = soleMaterial;
+	}
+
+	public String getHeelHeight() {
+		return heelHeight;
+	}
+
+	public void setHeelHeight(String heelHeight) {
+		this.heelHeight = heelHeight;
+	}
+
+	@ManyToOne
 	@JoinColumn(name="subcategoryId" ,nullable=false,insertable=false,updatable=false)
 	private Subcategory subcategory;
 
 	@ManyToOne
-   	@JoinColumn(name="supplierId" ,nullable=false,insertable=false,updatable=false)
+   	@JoinColumn(name="supplierAddressId" ,nullable=false,insertable=false,updatable=false)
    	private Supplier supplier;
 
-	 
-    public String getProductPrice() {
+
+
+
+	public String getProductPrice() {
 		return productPrice;
 	}
 
@@ -68,12 +169,13 @@ public class Product {
 		this.subcategoryId = subcategoryId;
 	}
 
-	public int getSupplierId() {
-		return supplierId;
+
+	public int getSupplierAddressId() {
+		return supplierAddressId;
 	}
 
-	public void setSupplierId(int supplierId) {
-		this.supplierId = supplierId;
+	public void setSupplierAddressId(int supplierAddressId) {
+		this.supplierAddressId = supplierAddressId;
 	}
 
 	public Subcategory getSubcategory() {
@@ -91,5 +193,20 @@ public class Product {
 	public void setSupplier(Supplier supplier) {
 		this.supplier = supplier;
 	}
-    
+
+	public MultipartFile getProductImage() {
+		return productImage;
+	}
+
+	public void setProductImage(MultipartFile productImage) {
+		this.productImage = productImage;
+	}
 }
+
+//	public MultipartFile getProductImage() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+
+	
+

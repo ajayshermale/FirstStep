@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.dao.SubcategoryDAO;
 import com.firststep.model.Subcategory;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 @Repository
 public class SubcategoryDAOImpl implements SubcategoryDAO
@@ -29,7 +30,7 @@ public class SubcategoryDAOImpl implements SubcategoryDAO
      
 	@SuppressWarnings("unchecked")
 	public String stringsubcategory() {
-		Gson list = new Gson();
+		Gson list = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 		List<Subcategory> subcategoryList = sessionFactory.getCurrentSession().createQuery("from Subcategory").getResultList();
 		String subcategoryjson= list.toJson(subcategoryList);
 		return subcategoryjson;

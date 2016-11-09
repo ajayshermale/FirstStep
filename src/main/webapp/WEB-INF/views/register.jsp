@@ -18,7 +18,7 @@
 <label>UserName</label>
 <form:input path="username" class="form-control"/>
 <label>Password</label>
-<form:input path="password" class="form-control"/>
+<form:input type="passward" path="password" class="form-control"/>
 <label>UserFirstname</label>
 <form:input path="userfirstname" class="form-control"/>
 <label>UserLastname</label>
