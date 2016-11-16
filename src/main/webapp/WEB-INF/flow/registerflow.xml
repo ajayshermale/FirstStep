@@ -4,8 +4,15 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.springframework.org/schema/webflow
                           http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
-                        
-
+              
+              
+           <var name="userDetail" class="com.firststep.model.UserDetail" />  
+            <var name="shippingAddress" class="com.firststep.model.ShippingAddress" />             
+             <var name="billingAddress" class="com.firststep.model.BillingAddress" />
+             
+             
+             
+             
 	<!-- demohandler is java class available through annotated registerhandler.java class.here we are calling initFlow() method. -->
 	 <on-start>
 	  <evaluate expression="registerHandler.initFlow()" result="flowScope.userDetail"/>
@@ -17,9 +24,17 @@
 	
 	<action-state id="validate">
 		<evaluate expression="registerHandler.validateDetails(userDetail,messageContext)"></evaluate>
+		<transition on="success" to="duplicateUser" />
+		<transition on="failure" to="start" />
+	</action-state>
+	
+	
+	<action-state id="duplicateUser">
+		<evaluate expression="registerHandler.duplicateUser(userDetail,messageContext)"></evaluate>
 		<transition on="success" to="confirmDetails" />
 		<transition on="failure" to="start" />
 	</action-state>
+	
 	
 	<view-state id="confirmDetails" view="confirmDetails" model="userDetail">
 		<transition on="edit" to="start" />

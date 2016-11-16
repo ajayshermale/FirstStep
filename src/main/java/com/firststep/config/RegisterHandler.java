@@ -1,6 +1,7 @@
 package com.firststep.config;
 
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +23,34 @@ public class RegisterHandler {
 		return new UserDetail();
     }
 
+	@Autowired
+	private UserService userService;
+	
 	public String validateDetails(UserDetail userDetail,MessageContext messageContext){
 		String status = "success";
+		
+		
 		if(userDetail.getUsername().isEmpty()){
 			messageContext.addMessage(new MessageBuilder().error().source(
-					"username").defaultText("username cannot be Empty").build());
+					"username").defaultText("UserName cannot be Empty").build());
+			status = "failure";
+		}
+		
+		if(userDetail.getPassword().isEmpty()){
+			messageContext.addMessage(new MessageBuilder().error().source(
+					"password").defaultText("Password cannot be Empty").build());
+			status = "failure";
+		}
+		
+		if(userDetail.getUserfirstname().isEmpty()){
+			messageContext.addMessage(new MessageBuilder().error().source(
+					"userfirstname").defaultText("UserFirstname cannot be Empty").build());
+			status = "failure";
+		}
+		
+		if(userDetail.getUserlastname().isEmpty()){
+			messageContext.addMessage(new MessageBuilder().error().source(
+					"userlastname").defaultText("UserLastname cannot be Empty").build());
 			status = "failure";
 		}
 		
@@ -37,19 +61,36 @@ public class RegisterHandler {
 		}
 		if(userDetail.getContactnumber().isEmpty()){
 			messageContext.addMessage(new MessageBuilder().error().source(
-					"contactnumber").defaultText("contact number cannot be Empty").build());
+					"contactnumber").defaultText("Contact Number cannot be Empty").build());
 			status = "failure";
 		}
 		return status;
 	}
 	
+	public String duplicateUser(UserDetail userDetail,MessageContext messageContext){
+		String status = "success";
+		List<UserDetail> UserDetailList=userService.UserDetailList();
+	for(UserDetail user:UserDetailList)
+	{
+		if(userDetail.getUsername().equals(user.getUsername())){
+			messageContext.addMessage(new MessageBuilder().error().source(
+					"username").defaultText("USER NAME EXIST").build());
+			status = "failure";
+		}
+		
+		if(userDetail.getEmail().equals(user.getEmail())){
+			messageContext.addMessage(new MessageBuilder().error().source(
+					"email").defaultText("EMAIL EXIST").build());
+			status = "failure";
+		}
+		
+		
+	}
 	
+	return status;
+}
 	@Autowired
 	private ShippingAddress shippingAddress;
-	
-	@Autowired
-	private BillingAddress billingAddress;
-	
 	
 	public String addShippingAddress(ShippingAddress shippingAddress)
 	{
@@ -65,7 +106,8 @@ public class RegisterHandler {
 		
 	}
 	
-	
+	@Autowired
+	private BillingAddress billingAddress;
 	
 	public String addBillingAddress( BillingAddress billingAddress)
 	{
@@ -78,10 +120,8 @@ public class RegisterHandler {
 	
 		return "success";
 	}
-
+	
 		
-	@Autowired
-	private UserService userService;	
 	
 
 	public String saveOrUpdateUser(UserDetail userDetail, ShippingAddress shippingAddress,BillingAddress billingAddress)
@@ -100,6 +140,11 @@ public class RegisterHandler {
 		return "success";
 		
 	}
+	
+	
+	
+	
+	
 	
 	@Autowired
 	private Supplier supplier;

@@ -30,15 +30,15 @@ public class Category implements Serializable {
 	@OneToMany(fetch = FetchType.EAGER,cascade=CascadeType.ALL,mappedBy="category")
     private Set<Subcategory> subcategory ;
 
-	@OneToMany
-    private Set<Product> product ;
-	
-	public Set<Product> getProduct() {
-		return product;
-	}
-	public void setProduct(Set<Product> product) {
-		this.product = product;
-	}
+//	@OneToMany
+//    private Set<Product> product ;
+//	
+//	public Set<Product> getProduct() {
+//		return product;
+//	}
+//	public void setProduct(Set<Product> product) {
+//		this.product = product;
+//	}
 	public Set<Subcategory> getSubcategory() {
 		return subcategory;
 	}

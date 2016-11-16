@@ -23,31 +23,24 @@ td, th {
 }
  </style>
 </head>
+
+<br>
 <div class="container">
 <body>
-<form:form method="POST" action="add/supplier" modelAttribute="supplier">
-<form:input path="supplierId" hidden="true"/>
-<label>SupplierName</label>
-<form:input path="supplierName"/>
-<label>SupplierDesccription</label>
-<form:input path="supplierDescription"/>
-<input type="submit" value="Submit"/>
-</form:form>
+
 <div ng-app="myApp" ng-controller="myCtrl">
 <table>
-<tr>
-<th>SupplierId</th>
-<th>SupplierName</th>
-<th>SupplierDesccription</th>
-<th>Delete</th>
-<th>Edit</th>
-</tr>
+
 <tr ng-repeat="x in abc">
-      <td>{{x.supplierId}}</td>
-      <td>{{x.supplierName}}</td>
-      <td>{{x.supplierDescription}}</td>
-      <td><a href="deleteSupplier-{{x.supplierId}}">Delete</a></td>
-      <td><a href="editSupplier-{{x.supplierId}}">Edit</a></td>
+       <td>{{x.supplierAddressId}}</td> 
+      <td>{{x.supplierCompanyName}}</td>
+      <td>{{x.supplierCompanyAddress}}</td>
+      <td>{{x.supplierURL}}</td>
+      <td>{{x.supplierCity}}</td>
+      <td>{{x.supplierState}}</td>
+      <td>{{x.supplierPincode}}</td>
+      
+
 </tr>
 </table>
 </div>
@@ -55,7 +48,7 @@ td, th {
 <script>
 var app = angular.module('myApp', []);
  app.controller('myCtrl', function($scope) {
-    $scope.abc = ${supplierjson};
+    $scope.abc = ${supjson};
  });
 </script> 
 </div>

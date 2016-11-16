@@ -42,6 +42,7 @@
 ////        
 ////		
 ////	}
+
 ////	@SuppressWarnings("unchecked")
 ////	public Supplier getSupplierById(int supplierId) {
 ////		String sql = "from Supplier where supplierId=" +supplierId;

@@ -7,9 +7,12 @@
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  
+  <script src="resources/js/angular.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   
   <script>$(document).ready(function() {   
       var sideslider = $('[data-toggle=collapse-side]');
@@ -54,8 +57,8 @@
           .side-collapse.in {
               width:0;
           }
-  
-  </style>
+         
+</style>
 </head>
 <body class="body">
 <header role="banner" class="navbar navbar-fixed-top navbar-inverse">
@@ -63,20 +66,27 @@
   
     <div class="navbar-header">
 <button data-toggle="collapse-side" data-target=".side-collapse" data-target-2=".side-collapse-container" type="button" class="navbar-toggle pull-left"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-      <a class="navbar-brand" href="#">Logo</a>
+<!--      <a class="navbar-brand  brand-name"><h1 href="#" class="pull-left"><img src="resources/images/Logomakr_5x4BYF.png"></a></h1> -->
+      
+      <a class="navbar-brand" href="#">
+  <a><img src="resources/images/Logo.png" style="display: inline-block;"></a>
+</a>
+
+   
     </div>
     <div class="navbar-inverse side-collapse in">
     <nav role="navigation" class="navbar-collapse">
       <ul class="nav navbar-nav">
         <li ><a href="http://localhost:8080/FirstStep/">Home</a></li>
         <li><a href="#">About</a></li>
-        <li><a href="#">Projects</a></li>
         <li><a href="#">Contact</a></li>
         <sec:authorize access="isAuthenticated()">
          <sec:authentication property="principal.username" var="username" />
-        <li> <a> ${username}</a></li>
+        <li> <a>WELCOME: ${username}</a></li>
          </sec:authorize>
       </ul>
+    
+      
       <ul class="nav navbar-nav navbar-right">
       <c:if test="${pageContext.request.userPrincipal.name == null }">
        <li> <a href="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
@@ -85,7 +95,7 @@
         <c:if test="${pageContext.request.userPrincipal.name != null}">
             <li><a href="perform_logout"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
          </c:if>
-        
+        <li><a href="register"><span class="glyphicon glyphicon-user"></span>Register</a></li>
       </ul>
       </nav>
     </div>
@@ -95,22 +105,23 @@
 <!-- admin nav bar -->
  
 <sec:authorize access="hasRole('ROLE_ADMIN')">
-       
+  <div class="container side-collapse-container">     
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">
-      <sec:authentication property="principal.username" var="username" />
-        <li><a> ${username}</a></li></a>
+     
+      
     </div>
     <ul class="nav navbar-nav">
+    <sec:authentication property="principal.username" var="username" />
+        <li><a> WELCOME ADMIN: ${username}</a></li>
       <li ><a href="categories">CATEGORY</a></li>
       <li><a href="subCategory">SUBCATEGORY</a></li>
       <li><a href="product">PRODUCT</a></li>
       <li><a href="newsupplier">SUPPLIER</a></li>
     </ul>
   </div>
-</nav>
+</nav></div>
 </sec:authorize> 
 
 

@@ -12,6 +12,7 @@ import com.daoimplementation.UserDAOImpl;
 import com.firststep.model.BillingAddress;
 import com.firststep.model.ShippingAddress;
 import com.firststep.model.Supplier;
+import com.firststep.model.User;
 import com.firststep.model.UserDetail;
 
 @Service
@@ -52,7 +53,7 @@ public class UserService {
 		this.userDAOImpl.addBillingAddress(billingAddress);
 	}
 	
-
+	
 	@Transactional
 	public List<UserDetail> UserDetailList()  {
 		return this.userDAOImpl.UserDetailList();
@@ -78,5 +79,23 @@ public class UserService {
 		    return userDAOImpl.getIdByName(supplierCompanyName);
 	    	
 	    }
-
+       @Transactional
+       public String stringsupplier()
+   	{
+    	 return userDAOImpl.stringsupplier();  
+   	}
+   
+       @Transactional
+       public Supplier getSupplierById(int supplierAddressId)
+   	{
+    	 return userDAOImpl.getSupplierById(supplierAddressId);  
+   	} 
+       
+       @Transactional
+       public UserDetail getUserId(String userName)
+       {
+    	  
+    	   return userDAOImpl.getUserId(userName);
+    	   
+       }
 }       

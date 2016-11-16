@@ -5,6 +5,13 @@
 <%@ include file="header.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<style>
+ .error 
+    {
+        color: #ff0000;
+        font-weight: bold;
+    }
+</style>
 <head>
 <title>FORM</title>
       <script type="text/javascript" src="resources/js/jquery-3.1.1.min.js"></script>
@@ -17,34 +24,45 @@
 <form:input path="userId" hidden="true"/>
 <div class="container">
 <label>UserName</label>
-<form:input path="username" class="form-control"/>
+<form:input path="username" class="form-control"   />
+
 <!-- to display validation messages -->
-					<c:forEach items="${flowRequestContext.messageContext.getMessagesBySource('username')}" var="err">
-					  <div><span>${err.text}</span></div>
-					</c:forEach>
+<form:errors path="username" cssClass="error" />
+<%-- 					<c:forEach   items="${flowRequestContext.messageContext.getMessagesBySource('username')}" var="err"  > --%>
+<%-- 					  <div><span>${err.text}</span></div> --%>
+<%-- 					</c:forEach> --%>
 					<br>
 <label>Password</label>
 <form:input path="password" class="form-control"/>
+<!-- to display validation messages -->
+<form:errors path="password" cssClass="error" />
 <br>
 <label>UserFirstname</label>
 <form:input path="userfirstname" class="form-control"/>
+<!-- to display validation messages -->
+<form:errors path="password" cssClass="error" />
 <br>
 <label>UserLastname</label>
 <form:input path="userlastname" class="form-control"/>
+<!-- to display validation messages -->
+<form:errors path="password" cssClass="error" />
 <br>
 <label>Email</label>
 <form:input path="email" class="form-control"/>
+<!-- to display validation messages -->
+<form:errors path="email" cssClass="error" />
 
-                   <c:forEach items="${flowRequestContext.messageContext.getMessagesBySource('email')}" var="err">
-					  <div><span>${err.text}</span></div>
-					</c:forEach>
+<%--                    <c:forEach items="${flowRequestContext.messageContext.getMessagesBySource('email')}" var="err"> --%>
+<%-- 					  <div><span>${err.text}</span></div> --%>
+<%-- 					</c:forEach> --%>
 <br>					
 <label>ContactNumber</label>
 <form:input path="contactnumber" class="form-control"/>
-
-                    <c:forEach items="${flowRequestContext.messageContext.getMessagesBySource('contactnumber')}" var="err">
-					  <div><span>${err.text}</span></div>
-				   	</c:forEach>
+<!-- to display validation messages -->
+<form:errors path="contactnumber" cssClass="error" />
+<%--                     <c:forEach items="${flowRequestContext.messageContext.getMessagesBySource('contactnumber')}" var="err"> --%>
+<%-- 					  <div><span>${err.text}</span></div> --%>
+<%-- 				   	</c:forEach> --%>
 
 <br>
 <!-- <label>SHIPPING ADDRESS: </label></div> -->

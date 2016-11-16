@@ -50,8 +50,12 @@ td, th {
 <th>Delete</th>
 <th>Edit</th>
 </tr>
+ <div>
+<label>Search</label>
+<input type="text" ng-model="test"/>
+</div><br>
 
-<tr ng-repeat="x in abc">
+<tr ng-repeat="x in abc | filter: test  ">
       <td>{{x.subcategoryId}}</td>
       <td>{{x.subcategoryName}}</td>
       <td>{{x.subcategoryDescription}}</td>

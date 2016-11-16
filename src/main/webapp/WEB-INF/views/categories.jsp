@@ -38,6 +38,9 @@ td, th {
 <br>
 <input type="submit" value="Submit"/>
 </form:form><br>
+
+
+
 <div ng-app="myApp" ng-controller="myCtrl"><div style="overflow-x:auto;">
 <table>
 <tbody>
@@ -48,7 +51,11 @@ td, th {
 <th>Delete</th>
 <th>Edit</th>
 </tr>
-<tr ng-repeat="x in abc">
+  <div>
+<label>Search</label>
+<input type="text" ng-model="test"/>
+</div><br>
+<tr ng-repeat="x in abc | filter: test ">
       <td>{{x.categoryId}}</td>
       <td>{{x.categoryName}}</td>
       <td>{{x.categoryDescription}}</td>

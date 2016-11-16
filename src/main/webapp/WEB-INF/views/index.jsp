@@ -1,4 +1,8 @@
 
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ page isELIgnored="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="header.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,6 +25,9 @@
         }
     );
 });</script>
+
+ <script type="text/javascript" src="resources/js/jquery-3.1.1.min.js"></script>
+      <script src="resources/js/angular.min.js"></script>
 
 <style>
 
@@ -184,10 +191,13 @@ figcaption .project-creator {
     line-height: 18px;
     letter-spacing: 1px;
 } 
+
+
 </style>
 
 </head>
 <body>
+<div></div>
 <div class="container side-collapse-container">
 <nav class="navbar navbar-default" role="navigation">
   <div class="container-fluid">
@@ -215,36 +225,36 @@ figcaption .project-creator {
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
                         <c:forEach var="subcategory" items="${category.subcategory}" >
-                       <li><a href="#men" role="tab" data-toggle="tab">${subcategory.subcategoryName} </a></li></c:forEach>
+                       <li><a href="productlist?search={{searchKeyword}}" role="tab" data-toggle="tab">${subcategory.subcategoryName} </a></li></c:forEach>
  
                     </ul> 
                     </div></div>
                     </c:forEach></ul>
                     
 
-    </div></div> </nav>   
+    </div>  </nav>
   
         <form class="navbar-form navbar-left" role="search">
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Search">
+              <input type="text" class="form-control" placeholder="Search" >
             </div>
             <button type="submit" class="btn btn-default">Submit</button>
         </form>
-        <ul class="nav navbar-nav navbar-right">
-           
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li class="divider"></li>
-                <li><a href="#">Separated link</a></li>
-              </ul>
-            </li>
-        </ul>
-    </div>
-
+               <ul class="nav navbar-nav navbar-right"> </ul>
+           </div>
+<!--             <li class="dropdown"> -->
+<!--               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a> -->
+<!--               <ul class="dropdown-menu" role="menu"> -->
+<!--                 <li><a href="#">Action</a></li> -->
+<!--                 <li><a href="#">Another action</a></li> -->
+<!--                 <li><a href="#">Something else here</a></li> -->
+<!--                 <li class="divider"></li> -->
+<!--                 <li><a href="#">Separated link</a></li> -->
+<!--               </ul> -->
+<!--             </li> -->
+<!--         </ul> -->
+<!--     </div> -->
+ 
 
 
 <!-- body -->
@@ -319,35 +329,55 @@ figcaption .project-creator {
   </div>
 
 
-
-
-<!-- product list -->
-
  <div class="container"> 
 <div>
+
+
+
     <h1 class="text-center text-primary title">Top Selling</h1>
     <hr class="divider-title">
-     <c:forEach var="product" items="${listproduct}" >
+     <div ng-app="supplierapp" ng-controller="supplierCtrl">
      
-    <div class="col-ms-10 col-md-4">
+    <div class="col-ms-10 col-md-4" ng-repeat="x in abc">
         <div class="project">
             <figure class="img-responsive">
-              <img class="group list-group-image" src="resources/images/${product.productId}.jpg" width="400px" height="300px" />
-<!--                 <img src="http://lorempixel.com/400/300/sports/6/"> -->
+              <img class="group list-group-image" src="resources/images/{{x.productId}}.jpg" width="400px" height="300px" />
+            
                 <figcaption>
-                    <span class="project-details">Full project name</span>
-                    <span class="project-price"><strong>$100</strong></span>
-                    <span class="project-creator">creator name</span>
+                    <span class="project-details"><strong>{{x.productName}}</strong></span>
+                    <span class="project-price"><strong><p1>Rs</p1>{{x.productPrice}}</strong></span>
+<%--                     <span class="container">${product.productDescription}</span> --%>
                 </figcaption>
+   
                 <span class="actions">
-                        <button class="btn btn-warning bnt-action" type="submit" >View </button>
+                <a href="viewproduct-{{x. productId}}-product">
+                        <button  class="btn btn-warning bnt-action" type="submit" >View </button></a>
                 </span>
-            </figure>
-        </div>
-    </div>
-    </c:forEach>
+                   
+                 </figure>
+                             <div class="row">
+							<div class="col-md-5">
+								<a class="btn btn-primary btn-product"><span class="glyphicon glyphicon-thumbs-up"></span> Like</a> 
+							</div>
+			
+							<div class="col-md-6">
+								<a href="buynow-{{x.productId}}?userId=1" class="btn btn-success btn-product"><span class="glyphicon glyphicon-shopping-cart"></span> Buy</a></div>
+					</div>
+					 
+  </div>
+  </div>
+   </div>
 </div>
 </div>
+ <script> 
+var app = angular.module('supplierapp', []);
+ app.controller('supplierCtrl', function($scope) {
+    $scope.abc = ${productjson}; 
+      
+ });
+ </script>
+
+</div></div></div>
 
 <!-- sale images-->
 
@@ -358,51 +388,53 @@ figcaption .project-creator {
 <!--     <p></p> -->
 <!--   </div> -->
 <!-- </div> -->
-  
-<div class="container-fluid bg-3 text-center">
-  <h1></h1><br>
-  <div class="row">
-    <div class="col-sm-3">
-      <p>NAVY BLUE</p>
-      <img src="resources/images/FST_1060_NAVY_BLUE_1_1(1).JPG" class="img-responsive" style="width:100%" alt="Image">
-    </div>
-    <div class="col-sm-3">
-      <p>HYDRA</p>
-      <img src="resources/images/HYDRA_17_RBL-PGN_1.JPG" class="img-responsive" style="width:100%" alt="Image">
-    </div>
-    <div class="col-sm-3">
-      <p>RBK</p>
-      <img src="resources/images/TS-164BLK-PGN_1.jpg" class="img-responsive" style="width:100%" alt="Image">
-    </div>
-    <div class="col-sm-3">
-      <p>WHITE AIR</p>
-      <img src="resources/images/LPJ_05_WHT-NBL_1_1.JPG" class="img-responsive" style="width:100%" alt="Image">
-    </div>
-  </div>
-</div><br>
 
-<div class="container-fluid bg-3 text-center">
-  <div class="row">
-    <div class="col-sm-3">
-      <p>TENBLSBLKWHT</p>
-      <img src="resources/images/TENBLSBLKWHT01_1110PX_1_.JPG" class="img-responsive" style="width:100%" alt="Image">
-    </div>
-    <div class="col-sm-3">
-      <p>TENSANBLSVLBLK</p>
-      <img src="resources/images/TENSANBLSVLBLK01_1110PX_1_.JPG" class="img-responsive" style="width:100%" alt="Image">
-    </div>
-    <div class="col-sm-3">
-      <p>TENBLSWHRED</p>
-      <img src="resources/images/TENBLSWHRED02_1110PX_1_.JPG" class="img-responsive" style="width:100%" alt="Image">
-    </div>
-    <div class="col-sm-3">
-      <p>TENBLSWHGRN</p>
-      <img src="resources/images/TENBLSWHGRN04_1110PX_1_.JPG" class="img-responsive" style="width:100%" alt="Image">
-    </div>
-  </div>
-</div><br><br>
-</div></div>
+<!--   <div class="container"> -->
+<!-- <div class="container-fluid bg-3 text-center"> -->
+<!--   <h1></h1><br> -->
+<!--   <div class="row"> -->
+<!--     <div class="col-sm-3"> -->
+<!--       <p>NAVY BLUE</p> -->
+<!--       <img src="resources/images/FST_1060_NAVY_BLUE_1_1(1).JPG" class="img-responsive" style="width:100%" alt="Image"> -->
+<!--     </div> -->
+<!--     <div class="col-sm-3"> -->
+<!--       <p>HYDRA</p> -->
+<!--       <img src="resources/images/HYDRA_17_RBL-PGN_1.JPG" class="img-responsive" style="width:100%" alt="Image"> -->
+<!--     </div> -->
+<!--     <div class="col-sm-3"> -->
+<!--       <p>RBK</p> -->
+<!--       <img src="resources/images/TS-164BLK-PGN_1.jpg" class="img-responsive" style="width:100%" alt="Image"> -->
+<!--     </div> -->
+<!--     <div class="col-sm-3"> -->
+<!--       <p>WHITE AIR</p> -->
+<!--       <img src="resources/images/LPJ_05_WHT-NBL_1_1.JPG" class="img-responsive" style="width:100%" alt="Image"> -->
+<!--     </div> -->
+<!--   </div> -->
+<!-- </div><br> -->
 
+<!-- <div class="container-fluid bg-3 text-center"> -->
+<!--   <div class="row"> -->
+<!--     <div class="col-sm-3"> -->
+<!--       <p>TENBLSBLKWHT</p> -->
+<!--       <img src="resources/images/TENBLSBLKWHT01_1110PX_1_.JPG" class="img-responsive" style="width:100%" alt="Image"> -->
+<!--     </div> -->
+<!--     <div class="col-sm-3"> -->
+<!--       <p>TENSANBLSVLBLK</p> -->
+<!--       <img src="resources/images/TENSANBLSVLBLK01_1110PX_1_.JPG" class="img-responsive" style="width:100%" alt="Image"> -->
+<!--     </div> -->
+<!--     <div class="col-sm-3"> -->
+<!--       <p>TENBLSWHRED</p> -->
+<!--       <img src="resources/images/TENBLSWHRED02_1110PX_1_.JPG" class="img-responsive" style="width:100%" alt="Image"> -->
+<!--     </div> -->
+<!--     <div class="col-sm-3"> -->
+<!--       <p>TENBLSWHGRN</p> -->
+<!--       <img src="resources/images/TENBLSWHGRN04_1110PX_1_.JPG" class="img-responsive" style="width:100%" alt="Image"> -->
+<!--     </div> -->
+<!--   </div> -->
+<!-- </div><br><br> -->
+<!-- </div> -->
+</body>
+</html>
 <%@ include file="footer.jsp" %>
 
 

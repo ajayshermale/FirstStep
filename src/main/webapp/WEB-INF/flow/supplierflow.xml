@@ -5,6 +5,9 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.springframework.org/schema/webflow
                           http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+                  
+                   <var name="supplier" class="com.firststep.model.Supplier" />
+                  
                     
     <!-- demohandler is java class available through annotated registerhandler.java class.here we are calling initFlow() method. -->
 	 <on-start>
@@ -17,6 +20,12 @@
 	
 	<action-state id="validate">
 		<evaluate expression="registerHandler.validateDetails(userDetail,messageContext)"></evaluate>
+		<transition on="success" to="duplicateUser" />
+		<transition on="failure" to="start" />
+	</action-state>
+	
+	<action-state id="duplicateUser">
+		<evaluate expression="registerHandler.duplicateUser(userDetail,messageContext)"></evaluate>
 		<transition on="success" to="confirmDetails" />
 		<transition on="failure" to="start" />
 	</action-state>

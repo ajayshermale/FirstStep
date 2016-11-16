@@ -18,6 +18,7 @@ import com.firststep.model.User;
 import com.firststep.model.UserDetail;
 import com.firststep.model.UserRole;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 @Repository
 public class UserDAOImpl implements UserDAO
@@ -185,15 +186,37 @@ public class UserDAOImpl implements UserDAO
 			else return null;
 		}
 	
-//	@SuppressWarnings("unchecked")
-//	public String stringsupplier()
-//	{
-//	    Gson list = new Gson();
-//		List<Supplier> SupplierList = sessionFactory.getCurrentSession().createQuery("from Supplier").getResultList();
-//		String productjson= list.toJson(SupplierList);
-//		return productjson;
-//	}
-	
+	@SuppressWarnings("unchecked")
+	public String stringsupplier()
+	{
+	    Gson list = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+		List<Supplier> SupplierList = sessionFactory.getCurrentSession().createQuery("from Supplier").getResultList();
+		String supplierjson= list.toJson(SupplierList);
+		return supplierjson;
+	}
+
+@SuppressWarnings("unchecked")
+public Supplier getSupplierById(int supplierAddressId) {
+	String sql = "from Supplier where supplierAddressId=" +supplierAddressId;
+	List<Supplier> supplierList = sessionFactory.getCurrentSession().createQuery(sql).getResultList();
+	if(supplierList!=null && !supplierList.isEmpty())
+	{
+		return supplierList.get(0);
+	}
+	else return null;
+ 	}
+
+//need to get userId
+@SuppressWarnings("unchecked")
+public UserDetail getUserId(String userName) {
+	String sql = "from UserDetail where userName= '" +userName+"'";
+	List<UserDetail> userDetailList = sessionFactory.getCurrentSession().createQuery(sql).getResultList();
+	if(userDetailList!=null && !userDetailList.isEmpty())
+	{
+		return userDetailList.get(0);
+	}
+	else return null;
+ 	}
 	
 
 

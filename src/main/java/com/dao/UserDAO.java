@@ -2,6 +2,7 @@ package com.dao;
 
 import java.util.List;
 
+
 import com.firststep.model.UserDetail;
 
 
@@ -13,4 +14,7 @@ public interface UserDAO {
    // public void addRegisterAdmin(UserDetail userdetail);
 	public void createSupplier(UserDetail userdetail);
     public List<UserDetail> UserDetailList();
+    public UserDetail getUserId(String userName); 
+		
+	
 }

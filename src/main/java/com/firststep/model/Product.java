@@ -1,6 +1,7 @@
 package com.firststep.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -53,9 +54,29 @@ public class Product implements Serializable {
 	private String soleMaterial;
 	@Expose
 	private String heelHeight;
+	@Expose
+	private String quantity;
+	@Expose
+	private Date orderDate;
 	
 	
-    public String getSku() {
+    public Date getOrderDate() {
+		return orderDate;
+	}
+
+	public void setOrderDate(Date orderDate) {
+		this.orderDate = orderDate;
+	}
+
+	public String getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(String quantity) {
+		this.quantity = quantity;
+	}
+
+	public String getSku() {
 		return sku;
 	}
 
