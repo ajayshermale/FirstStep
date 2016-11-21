@@ -3,16 +3,14 @@ package com.service;
 
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.daoimplementation.UserDAOImpl;
 import com.firststep.model.BillingAddress;
 import com.firststep.model.ShippingAddress;
 import com.firststep.model.Supplier;
-import com.firststep.model.User;
+
 import com.firststep.model.UserDetail;
 
 @Service
@@ -92,10 +90,22 @@ public class UserService {
    	} 
        
        @Transactional
-       public UserDetail getUserId(String userName)
+       public UserDetail getUserName(String username)
        {
     	  
-    	   return userDAOImpl.getUserId(userName);
+    	   return userDAOImpl.getUserName(username);
     	   
+       }
+       
+       @Transactional
+       public ShippingAddress getShippingAddress(int userId)
+       {
+    	return userDAOImpl.getShippingAddress(userId);
+       }
+       
+       @Transactional
+       public  BillingAddress getBillingAddress(int userId)
+       {
+    	return userDAOImpl.getBillingAddress(userId);
        }
 }       

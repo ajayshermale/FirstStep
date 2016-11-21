@@ -57,7 +57,7 @@
           .side-collapse.in {
               width:0;
           }
-         
+
 </style>
 </head>
 <body class="body">
@@ -68,8 +68,8 @@
 <button data-toggle="collapse-side" data-target=".side-collapse" data-target-2=".side-collapse-container" type="button" class="navbar-toggle pull-left"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
 <!--      <a class="navbar-brand  brand-name"><h1 href="#" class="pull-left"><img src="resources/images/Logomakr_5x4BYF.png"></a></h1> -->
       
-      <a class="navbar-brand" href="#">
-  <a><img src="resources/images/Logo.png" style="display: inline-block;"></a>
+      <a class="navbar-brand" >
+ <a  href="http://localhost:8080/FirstStep/"><img src="resources/images/Logo.png" style="display: inline-block;"></a>
 </a>
 
    
@@ -78,12 +78,27 @@
     <nav role="navigation" class="navbar-collapse">
       <ul class="nav navbar-nav">
         <li ><a href="http://localhost:8080/FirstStep/">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="aboutous">About</a></li>
+        <li><a href="contactous">Contact</a></li>
         <sec:authorize access="isAuthenticated()">
          <sec:authentication property="principal.username" var="username" />
         <li> <a>WELCOME: ${username}</a></li>
-         </sec:authorize>
+        
+        
+<!--                        <ul class="nav navbar-nav navbar-right"> </ul> -->
+          
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Profile <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="profile">WELCOME: ${username}</a></li>
+                <li><a href="profile">Profile</a></li>
+                <li><a href="#">Orders</a></li>
+                <li><a href="#">Wishlist</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Help link</a></li>
+              </ul>
+            </li>
+       </sec:authorize>
       </ul>
     
       

@@ -23,34 +23,36 @@ td, th {
 }
  </style>
 </head>
-
+ <h1 class="text-center text-primary title">SUPPLIER DETAIL</h1>
+    <hr class="divider-title">
 <br>
 <div class="container">
-<body>
 
-<div ng-app="myApp" ng-controller="myCtrl">
-<table>
-
-<tr ng-repeat="x in abc">
-       <td>{{x.supplierAddressId}}</td> 
-      <td>{{x.supplierCompanyName}}</td>
-      <td>{{x.supplierCompanyAddress}}</td>
-      <td>{{x.supplierURL}}</td>
-      <td>{{x.supplierCity}}</td>
-      <td>{{x.supplierState}}</td>
-      <td>{{x.supplierPincode}}</td>
-      
-
-</tr>
+<!-- <tr ng-repeat="x in abc"> -->
+ <table class="table table-user-information">
+                    <tbody>
+                      <tr>
+                        <th>SUPPLIER CONPANY NAME</th>
+                        <td>${supplier.supplierCompanyName}</td> 
+                      </tr>
+                        <tr>
+                        <th>SUPPLIER URL</th>
+                      <td>${supplier.supplierURL}</td>
+                      </tr>
+                       <tr>
+                          <th>SUPPLIER CITY</th>
+                           <td>${supplier.supplierCity}</td>
+                      </tr>
+                       <tr>
+                          <th>SUPPLIER STATE</th>
+                        <td>${supplier.supplierState}</td>
+                      </tr>
+                       <tr>
+                          <th>SUPPLIER PINCODE</th>
+                         <td>${supplier.supplierPincode}</td> 
+                      </tr>
 </table>
-</div>
-
-<script>
-var app = angular.module('myApp', []);
- app.controller('myCtrl', function($scope) {
-    $scope.abc = ${supjson};
- });
-</script> 
 </div>
 </body>
 </html>
+<%@ include file="footer.jsp" %>

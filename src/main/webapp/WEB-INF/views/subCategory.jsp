@@ -64,7 +64,7 @@ td, th {
 </tr>
 </tbody>
 </table>
-</div>
+</div></div>
 </div>
 <script>
 var app = angular.module('myApp', []);

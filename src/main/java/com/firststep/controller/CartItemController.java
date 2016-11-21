@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,13 +36,13 @@ public class CartItemController
 	private CartItemService CartItemService;
 	
 	@RequestMapping("/buynow-{productId}")
-	public String addToBuyNow(@ModelAttribute("cartItem") CartItem cartItem, @PathVariable("productId") int productId,@RequestParam("userId")int userId,int cartItemId,HttpSession session)
+	public String addToBuyNow(@ModelAttribute("cartItem") CartItem cartItem, @PathVariable("productId") int productId,@RequestParam("userId")int userId,HttpSession session)
 	{
 	
 		 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	      String userName = auth.getName(); //get logged in username
+	      String username = auth.getName(); //get logged in username
 		
-	     userId=userService.getUserId(userName).getUserId();
+	     userId=userService.getUserName(username).getUserId();
 	     cartItem.setUserId(userId);
 	     cartItem.setCartId(userId);
 
@@ -61,29 +61,44 @@ public class CartItemController
 	      cartItem.setOrderDate(date);
 	      
 	      this.CartItemService.SaveOrUpdate(cartItem);
-	     
-//	      session.setAttribute("cartItemId",cartItem.getCartItemId());
-//	      cartItemId=(Integer) session.getAttribute("cartItemId");
 	      
-		  return "redirect:/cartlist"+cartItem.getCartItemId();
+	      session.setAttribute("cartItemId",cartItem.getCartItemId());
+	      int cartItemId=(Integer) session.getAttribute("cartItemId");      
+//	      
+		  return "redirect:/cartItem-"+cartItemId;
 		
-	}
+	}   
 
-	@RequestMapping("/cartlist-{cartItemId}")
-	public  ModelAndView stringCartItem(@PathVariable("cartItemId")int cartItemId)
+	@RequestMapping("/cartItem-{cartItemId}")
+	public  ModelAndView stringCartItem(@ModelAttribute("cartItem") CartItem cartItem,@PathVariable("cartItemId") int cartItemId,HttpSession session)
     {
+		 
+	       cartItemId=(Integer) session.getAttribute("cartItemId"); 
+	       session.setAttribute("cartItemId",cartItem.getCartItemId());
+		   
+		   CartItem newcartItem=CartItemService.getCartItemId(cartItemId);
 		
+		   Gson list = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+	       String cartItemjson= list.toJson(newcartItem);
 		
-		CartItem cartItem=CartItemService.getCartItemId(cartItemId);
-		
-		Gson list = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
-		String cartItemjson= list.toJson(cartItem);
-		
-		 ModelAndView model = new ModelAndView("cartItem");
-		 model.addObject("cartItem",cartItemjson);
-		return model;
-		
-		
+		   ModelAndView model = new ModelAndView("cartItem");
+		   model.addObject("cartItemlist",cartItemjson);
+		   return model;
     }
+	
+	@RequestMapping("/checkout")
+	public String checkout(@ModelAttribute("cartItem") CartItem cartItem, HttpSession session){
+	
+		 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	     String username = auth.getName(); 
+		
+	    int userId=userService.getUserName(username).getUserId();
+	     session.setAttribute("userId", userId);
+		
+	    return "redirect:/check?userId="+userId;
+	}
+	
+	
+	
 	
 }

@@ -5,13 +5,15 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Repository;
 
 
 import com.dao.UserDAO;
 import com.firststep.model.BillingAddress;
 import com.firststep.model.Cart;
-import com.firststep.model.Category;
+
 import com.firststep.model.ShippingAddress;
 import com.firststep.model.Supplier;
 import com.firststep.model.User;
@@ -208,8 +210,12 @@ public Supplier getSupplierById(int supplierAddressId) {
 
 //need to get userId
 @SuppressWarnings("unchecked")
-public UserDetail getUserId(String userName) {
-	String sql = "from UserDetail where userName= '" +userName+"'";
+public UserDetail getUserName(String username) {
+	
+	 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	 username = auth.getName(); 
+	
+	String sql = "from UserDetail where username= '" +username+"'";
 	List<UserDetail> userDetailList = sessionFactory.getCurrentSession().createQuery(sql).getResultList();
 	if(userDetailList!=null && !userDetailList.isEmpty())
 	{
@@ -217,6 +223,32 @@ public UserDetail getUserId(String userName) {
 	}
 	else return null;
  	}
+
+
+//shipping address for web flow
+@SuppressWarnings("unchecked")
+public ShippingAddress getShippingAddress(int userId) 
+{
+	String sql = "from ShippingAddress where UserDetail_userId= " +userId;
+	List<ShippingAddress> list = sessionFactory.getCurrentSession().createQuery(sql).getResultList();
+	if(list!=null && !list.isEmpty())
+	{
+		return list.get(0);
+	}
+	else return null;
+}
+
+
+public BillingAddress getBillingAddress(int userId) {
+	
+	String sql = "from BillingAddress where UserDetail_userId= " +userId;
+	List<BillingAddress> list = sessionFactory.getCurrentSession().createQuery(sql).getResultList();
+	if(list!=null && !list.isEmpty())
+	{
+		return list.get(0);
+	}
+	else return null;
+}
 	
 
 

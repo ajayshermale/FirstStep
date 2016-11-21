@@ -2,6 +2,7 @@ package com.firststep.config;
 
 
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -135,6 +136,8 @@ public class RegisterHandler {
 		userDetail.setBillingAddress(billingAddress);
 		this.userService.addBillingAddress(billingAddress);
 		
+		 Date date=new Date();
+		 userDetail.setOrderDate(date);
 		
 				
 		return "success";

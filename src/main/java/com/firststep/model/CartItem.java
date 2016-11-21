@@ -2,6 +2,7 @@ package com.firststep.model;
 
 
 
+import java.io.Serializable;
 import java.util.Date;
 
 
@@ -13,9 +14,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.google.gson.annotations.Expose;
-
+@SuppressWarnings("serial")
 @Entity
-public class CartItem {
+public class CartItem implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)

@@ -1,6 +1,7 @@
 package com.firststep.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 
@@ -34,6 +35,18 @@ private String contactnumber;
 private int roleId;
 @Expose
 private int cartId;
+@Expose
+private Date orderDate;
+
+
+
+public Date getOrderDate() {
+	return orderDate;
+}
+
+public void setOrderDate(Date orderDate) {
+	this.orderDate = orderDate;
+}
 
 @OneToOne
 @JoinColumn(name="userId" ,nullable=false,insertable=false,updatable=false)

@@ -92,14 +92,14 @@ public class UserController {
 	}
 
 	
-	@RequestMapping("/registeradmin")
-	public String registerAdmin(Model model)
-	{    
-		UserDetail userdetail=new UserDetail();
-		
-		model.addAttribute("admin", new UserDetail());
-	     return"/registeradmin";
-	}	
+//	@RequestMapping("/registeradmin")
+//	public String registerAdmin(Model model)
+//	{    
+//		UserDetail userdetail=new UserDetail();
+//		
+//		model.addAttribute("admin", new UserDetail());
+//	     return"/registeradmin";
+//	}	
 		
 
 //	@RequestMapping(value="/addregisteradmin",method=RequestMethod.POST)

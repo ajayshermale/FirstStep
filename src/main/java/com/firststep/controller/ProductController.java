@@ -147,31 +147,32 @@ public class ProductController
 		 
 		 ModelAndView model = new ModelAndView("viewproduct");
 		 model.addObject("productview",productjson);
+		
 		 
 		return model;
 	}
 	
 	
-	@RequestMapping(value= "/supplier-{supplierAddressId}-supplier" )
-	public ModelAndView viewSupplier(@PathVariable("supplierAddressId") int supplierAddressId,Supplier supplier)
-	{
-		supplier=userService.getSupplierById(supplierAddressId);
-//		model.addAttribute("product",userService.getSupplierById(supplierAddressId));
-		Gson list = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
-		String supjson= list.toJson(supplier);
-		
-		 ModelAndView model = new ModelAndView("supplier");
-		 model.addObject("supplier",supjson);
-		return model;
-	}
-//	
 //	@RequestMapping(value= "/supplier-{supplierAddressId}-supplier" )
-//	public String viewSupplier(@PathVariable("supplierAddressId") int supplierAddressId, Model model,Supplier supplier)
+//	public ModelAndView viewSupplier(@PathVariable("supplierAddressId") int supplierAddressId,Supplier supplier)
 //	{
+//		supplier=userService.getSupplierById(supplierAddressId);
+////		model.addAttribute("product",userService.getSupplierById(supplierAddressId));
+//		Gson list = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+//		String supjson= list.toJson(supplier);
 //		
-//		model.addAttribute("supplier",userService.getSupplierById(supplierAddressId));
-//		model.addAttribute("supjson",this.userService.stringsupplier());
-//		return "model";
+//		 ModelAndView model = new ModelAndView("supplier");
+//		 model.addObject("supplier",supjson);
+//		return model;
 //	}
+	
+	@RequestMapping(value= "/supplier-{supplierAddressId}-supplier" )
+	public String viewSupplier(@PathVariable("supplierAddressId") int supplierAddressId, Model model,Supplier supplier)
+	{
+		
+		model.addAttribute("supplier",userService.getSupplierById(supplierAddressId));
+//		model.addAttribute("supjson",this.userService.stringsupplier());
+		return "supplier";
+	}
 }
 

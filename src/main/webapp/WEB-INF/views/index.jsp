@@ -308,21 +308,21 @@ figcaption .project-creator {
     <div class="col-sm-4">
       <div class="panel panel-danger">
        
-        <div class="panel-body"><img src="resources/images/sale.jpg" class="img-responsive" style="width:100%" alt="Image"></div>
+        <div class="panel-body" ><a  href="http://localhost:8080/FirstStep/productlist"><img src="resources/images/sale.jpg" class="img-responsive" style="width:100%" alt="Image"></a></div>
        <!--   <div class="panel-footer">Buy 2 Shoes and get a gift card</div>-->
       </div>
     </div>
     <div class="col-sm-4">
       <div class="panel panel-danger">
       <!--   <div class="panel-heading"></div>--> 
-        <div class="panel-body"><img src="resources/images/new_arrivals_1.jpg" class="img-responsive" style="width:100%" alt="Image"></div>
+        <div class="panel-body"><a  href="http://localhost:8080/FirstStep/productlist"><img src="resources/images/new_arrivals_1.jpg" class="img-responsive" style="width:100%" alt="Image"></a></div>
      
       </div>
     </div>
     <div class="col-sm-4">
       <div class="panel panel-success">
      <!--     <div class="panel-heading">BLACK FRIDAY DEAL</div>-->
-        <div class="panel-body"><img src="resources/images/499_store.jpg" class="img-responsive" style="width:100%" alt="Image"></div>
+        <div class="panel-body"><a  href="http://localhost:8080/FirstStep/productlist"><img src="resources/images/499_store.jpg" class="img-responsive" style="width:100%" alt="Image"></a></div>
    <!--      <div class="panel-footer">Buy 50 mobiles and get a gift card</div>-->
       </div>
     </div>
@@ -356,11 +356,11 @@ figcaption .project-creator {
                    
                  </figure>
                              <div class="row">
-							<div class="col-md-5">
+							<div class="col-md-7">
 								<a class="btn btn-primary btn-product"><span class="glyphicon glyphicon-thumbs-up"></span> Like</a> 
 							</div>
 			
-							<div class="col-md-6">
+							<div class="col-md-1">
 								<a href="buynow-{{x.productId}}?userId=1" class="btn btn-success btn-product"><span class="glyphicon glyphicon-shopping-cart"></span> Buy</a></div>
 					</div>
 					 

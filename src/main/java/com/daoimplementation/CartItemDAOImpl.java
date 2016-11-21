@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.dao.CartItemDAO;
 import com.firststep.model.CartItem;
-import com.firststep.model.Product;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 

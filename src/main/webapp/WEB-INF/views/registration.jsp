@@ -65,29 +65,7 @@
 <%-- 				   	</c:forEach> --%>
 
 <br>
-<!-- <label>SHIPPING ADDRESS: </label></div> -->
-<!-- <div> -->
-<!-- <label>Landmark</label> -->
-<%-- <form:input path="shippingAddress.landmark"/> --%>
-<!-- <label>State</label> -->
-<%-- <form:input path="shippingAddress.state"/> --%>
-<!-- <label>City</label> -->
-<%-- <form:input path="shippingAddress.city"/> --%>
-<!-- <label>Pincode</label> -->
-<%-- <form:input path="shippingAddress.pincode"/> --%>
-<!-- </div> -->
-<!-- <div> -->
-<!-- <label>BILLING ADDRESS: </label></div> -->
-<!-- <div> -->
-<!-- <label>Landmark</label> -->
-<%-- <form:input path="billingAddress.landmark"/> --%>
-<!-- <label>State</label> -->
-<%-- <form:input path="billingAddress.state"/> --%>
-<!-- <label>City</label> -->
-<%-- <form:input path="billingAddress.city"/> --%>
-<!-- <label>Pincode</label> -->
-<%-- <form:input path="billingAddress.pincode"/> --%>
-<!-- </div> -->
+
 
 
  <div class="checkbox">

@@ -13,45 +13,35 @@
 </head>
 <body>
 
-
-
-
-
 <div ng-app="supplierapp" ng-controller="supplierCtrl">
 
 <div class="container">
 <div class="row">
-	       <div class="col-md-12">
-               <h4>Cart List</h4>
-                              <div>
-
-
-</div><br>
-   <div class="table-responsive">
-                    <table id="mytable" class="table table-bordred table-striped" >
-                    <thead>
+<div class="col-md-12"><h4>Cart List</h4>
+<div></div>
+<br>
+<div class="table-responsive">
+<table id="mytable" class="table table-bordred table-striped" >
+<thead>
 <tbody>
 <tr>
-<th>ProductId</th>
+<!-- <th>cartId</th> -->
+<!-- <th>quantity</th> -->
 <th>ProductName</th>
 <th>ProductPrise</th>
-<th>productDescription</th>
-<td>Date</td> 
+
+<th>Date</th> 
 <th>productImage</th>
-
+<th></th>
 <!-- <th>Delete|Edit|View</th> -->
-<!-- <th>Edit</th> -->
-<!-- <th>view</th> -->
 </tr>
-
-     
-      <td>{{x.productName}}</td>
-      <td>{{x.productPrice}}</td>
-     
-       <td>{{x.orderDate}}</td> 
-<!--       <td>{{x.supplierCompanyName}}</td> -->
-      <td><img  src="resources/images/{{x.productId}}.jpg" width="100px" height="100px"> 
-
+<!-- <td>{{x.cartItemId}}</td> -->
+<!-- <td>{{x.quantity}}</td> -->
+<td>{{x.productName}}</td>
+<td>{{x.amount}}</td>
+<td>{{x.orderDate}}</td> 
+<td><img  src="resources/images/{{x.productId}}.jpg" width="100px" height="100px"> </td>
+<td><a href="checkout" class="btn btn-default">Checkout</a></td>
 </tr>
 </tbody>
 </table>
@@ -64,13 +54,10 @@
  <script> 
 var app = angular.module('supplierapp', []);
  app.controller('supplierCtrl', function($scope) {
-    $scope.x = ${cartItem};
+    $scope.x = ${cartItemlist};
   
  });
  </script>   
-
-
-
-
 </body>
 </html>
+<%@ include file="footer.jsp" %>

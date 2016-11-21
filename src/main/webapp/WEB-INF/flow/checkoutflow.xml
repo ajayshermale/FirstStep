@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow
+                          http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+              
+              
+           <var name="userDetail" class="com.firststep.model.UserDetail" />  
+            <var name="shippingAddress" class="com.firststep.model.ShippingAddress" />             
+             <var name="billingAddress" class="com.firststep.model.BillingAddress" />
+                 <var name="buyNow" class="com.firststep.model.BuyNow" />
+             
+             
+             
+             
+	<!-- demohandler is java class available through annotated carthandler.java class.here we are calling initFlow() method. -->
+	 <on-start>
+	  <evaluate expression="cartHandler.initFlow()" result="flowScope.buyNow"/>
+	</on-start>
+	
+	
+	<action-state id="start">
+		<evaluate expression="userService.getShippingAddress(externalContext.sessionMap.userId)" result="shippingAddress"></evaluate>
+		<transition on="success" to="shippingAddressConfirm" />
+		<transition on="failure" to="start" />
+	</action-state>
+	<view-state id="shippingAddressConfirm" view="shippingAddressConfirm" model="shippingAddress">
+	    <transition on="edit" to="shippingaddress" />
+	   <transition on="submit" to="billingAddress"/>
+	</view-state>
+	<view-state id="shippingaddress" view="shippingaddress" model="shippingAddress">
+	    <transition on="edit" to="start" />
+	   <transition on="submit" to="addshippingadderss"/>
+	</view-state>
+	<action-state id="addshippingadderss">
+		<evaluate expression="userService.addShippingAddress(shippingAddress)" result="shippingAddress"></evaluate>
+		<transition on="success" to="start" />
+	</action-state>
+	
+	<action-state id="billingAddress">
+		<evaluate expression="userService.getBillingAddress(externalContext.sessionMap.userId)" result="billingAddress"></evaluate>
+		<transition on="success" to="billingAddressConfirm" />
+		<transition on="failure" to="start" />
+	</action-state>
+    <view-state id="billingAddressConfirm" view="billingAddressConfirm" model="billingAddress">
+	    <transition on="edit" to="billingaddress" />
+	   <transition on="submit" to="payment"/>
+	</view-state>
+	<view-state id="billingaddress" view="billingaddress" model="billingaddress">
+	    <transition on="edit" to="start" />
+	   <transition on="submit" to="addBillingAddress"/>
+	</view-state>
+	<action-state id="addBillingAddress">
+		<evaluate expression="userService.addBillingAddress(billingAddress)" result="billingAddress"></evaluate>
+		<transition on="success" to="billingAddress" />
+	</action-state>
+	
+	<view-state id="payment" view="payment" model="payment">
+	   <transition on="submit" to="toHome"/>
+	</view-state>
+	
+	<end-state id="index" view="index"/>
+	<end-state id="toHome" view="externalRedirect:contextRelative:/" />
+	<end-state id="toException" view="externalRedirect:contextRelative:exception.jsp" />
+	
+	
+    <!-- these events are available in every state-->
+	  <global-transitions>
+		<transition on="home" to="toHome" />
+		<transition on="error" to="toException" />
+    	</global-transitions>
+    </flow>

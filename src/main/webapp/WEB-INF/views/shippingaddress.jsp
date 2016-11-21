@@ -13,7 +13,7 @@
 </head>
 <body>
 <br>
-<form:form method="POST" commandName="shippingAddress">
+<form:form method="POST" commandName="shippingAddress"  >
 <div class="container">
 <label>SHIPPING ADDRESS: </label>
 <div>
