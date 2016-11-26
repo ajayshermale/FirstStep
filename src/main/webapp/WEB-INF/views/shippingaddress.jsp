@@ -2,7 +2,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ include file="header.jsp" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,6 +12,7 @@
 
 </head>
 <body>
+<%@ include file="./header.jsp" %>
 <br>
 <form:form method="POST" commandName="shippingAddress"  >
 <div class="container">
@@ -36,7 +37,6 @@
 <input name="_eventId_submit" type="submit" value="Submit" />
 </div></div>
 </form:form>
-  
+  <%@ include file="./footer.jsp" %>
 </body>
 </html>
-<%@ include file="footer.jsp" %>

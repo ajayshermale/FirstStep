@@ -2,13 +2,16 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ include file="header.jsp" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <title>FORM</title>
       <script type="text/javascript" src="resources/js/jquery-3.1.1.min.js"></script>
       <script src="resources/js/angular.min.js"></script>
+      
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      
   <style> 
 table {
     font-family: arial, sans-serif;
@@ -24,7 +27,9 @@ td, th {
  </style>
 </head>
 <body>
+<%@ include file="./header.jsp" %>
  <br>
+ <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_SUPPLIER')">
  <div class="container side-collapse-container">
 <form:form method="POST" action="addproduct" modelAttribute="product"  enctype="multipart/form-data">
 <form:input path="productId" hidden="true"/>
@@ -154,6 +159,8 @@ var app = angular.module('supplierapp', []);
  });
  </script>   
 </div>
+</sec:authorize>
+<%@ include file="./footer.jsp" %>
 </body>
 </html>
-<%@ include file="footer.jsp" %>
+

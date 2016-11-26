@@ -4,7 +4,6 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Date;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -151,6 +150,25 @@ public class ProductController
 		 
 		return model;
 	}
+	
+	@RequestMapping(value="/productlist")
+	public String displayProducts(Model model)
+	{
+		model.addAttribute("productjson",this.productFullViewService.stringproductFullView());
+		return "productlist";
+		
+	}
+	
+	@RequestMapping(value="/403")
+	public String displayProduct(Model model)
+	{
+		model.addAttribute("productjson",this.productFullViewService.stringproductFullView());
+		return "403";
+		
+	}
+	
+	
+	
 	
 	
 //	@RequestMapping(value= "/supplier-{supplierAddressId}-supplier" )

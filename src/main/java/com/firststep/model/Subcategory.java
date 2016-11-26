@@ -1,13 +1,17 @@
 package com.firststep.model;
 
 import java.io.Serializable;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.google.gson.annotations.Expose;
 @SuppressWarnings("serial")
@@ -29,6 +33,19 @@ public class Subcategory implements Serializable{
 	@JoinColumn(name="categoryId" ,nullable=false,insertable=false,updatable=false)
 	private Category category;
 	
+	@OneToMany(fetch = FetchType.EAGER,cascade=CascadeType.ALL,mappedBy="subcategory")
+	private Set<Product> product ;
+	
+	
+	
+	public Set<Product> getProduct() {
+		return product;
+	}
+
+	public void setProduct(Set<Product> product) {
+		this.product = product;
+	}
+
 	public int getSubcategoryId() {
 		return subcategoryId;
 	}

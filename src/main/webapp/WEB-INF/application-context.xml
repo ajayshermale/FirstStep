@@ -50,6 +50,9 @@
   <bean id="shippingAddress"   class="com.firststep.model.ShippingAddress"></bean>
   <bean id="billingAddress"   class="com.firststep.model.BillingAddress"></bean>   
    <bean id="supplier"   class="com.firststep.model.Supplier"></bean>  
+    <bean id="userDetail"   class="com.firststep.model.UserDetail"></bean>  
+     <bean id="product"   class="com.firststep.model.Product"></bean>  
+       <bean id="buyNow"   class="com.firststep.model.BuyNow"></bean> 
   </beans>
   
   

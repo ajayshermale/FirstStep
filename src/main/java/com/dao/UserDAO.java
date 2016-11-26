@@ -18,5 +18,7 @@ public interface UserDAO {
     public UserDetail getUserName(String username); 
     
     public ShippingAddress getShippingAddress(int userId); 
-    public BillingAddress getBillingAddress(int userId); 	
+    public BillingAddress getBillingAddress(int userId); 
+    
+   
 }

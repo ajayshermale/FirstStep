@@ -9,7 +9,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  
   <script src="resources/js/angular.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -80,6 +79,8 @@
         <li ><a href="http://localhost:8080/FirstStep/">Home</a></li>
         <li><a href="aboutous">About</a></li>
         <li><a href="contactous">Contact</a></li>
+         </ul>
+         <ul class="nav navbar-nav navbar-right">
         <sec:authorize access="isAuthenticated()">
          <sec:authentication property="principal.username" var="username" />
         <li> <a>WELCOME: ${username}</a></li>
@@ -92,17 +93,17 @@
               <ul class="dropdown-menu" role="menu">
                 <li><a href="profile">WELCOME: ${username}</a></li>
                 <li><a href="profile">Profile</a></li>
-                <li><a href="#">Orders</a></li>
-                <li><a href="#">Wishlist</a></li>
+                <li><a href="wishlist">MyWishlist</a></li>
+                 <li><a href="#">MyOrders</a></li>
                 <li class="divider"></li>
                 <li><a href="#">Help link</a></li>
               </ul>
             </li>
        </sec:authorize>
-      </ul>
+     
     
       
-      <ul class="nav navbar-nav navbar-right">
+     
       <c:if test="${pageContext.request.userPrincipal.name == null }">
        <li> <a href="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         </c:if>
@@ -110,7 +111,7 @@
         <c:if test="${pageContext.request.userPrincipal.name != null}">
             <li><a href="perform_logout"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
          </c:if>
-        <li><a href="register"><span class="glyphicon glyphicon-user"></span>Register</a></li>
+        <li><a href="register"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
       </ul>
       </nav>
     </div>
@@ -118,7 +119,7 @@
 </header>
 
 <!-- admin nav bar -->
- 
+ <div>
 <sec:authorize access="hasRole('ROLE_ADMIN')">
   <div class="container side-collapse-container">     
 <nav class="navbar navbar-default">
@@ -138,9 +139,28 @@
   </div>
 </nav></div>
 </sec:authorize> 
-
-
-
+</div>
+<!-- supplier nav bar -->
+ <div>
+<sec:authorize access="hasRole('ROLE_SUPPLIER')">
+  <div class="container side-collapse-container">     
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+     
+      
+    </div>
+    <ul class="nav navbar-nav">
+    <sec:authentication property="principal.username" var="username" />
+        <li><a> WELCOME SUPPLIER: ${username}</a></li>
+      <li ><a href="categories">CATEGORY</a></li>
+      <li><a href="subCategory">SUBCATEGORY</a></li>
+      <li><a href="product">PRODUCT</a></li>
+    </ul>
+  </div>
+</nav></div>
+</sec:authorize> 
+</div>
 
 </body>
 </html>

@@ -2,7 +2,7 @@
 <%@taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
- <%@ include file="header.jsp" %>
+ 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,6 +11,7 @@
 
 </head>
 <body>
+<%@ include file="./header.jsp" %>
 <br>
 <div class="container">
 		<div class="content">
@@ -43,12 +44,12 @@
 					<!-- for triggering webflow events using form submission,
 					 the eventId to be triggered is given in "name" attribute as:
 					-->
+						<input name="_eventId_cancel" type="submit" value="Cancel" />
 					<input name="_eventId_edit" type="submit" value="Edit" />  
 					<input name="_eventId_submit" type="submit" value="submit" /><br />
 				</sf:form>
 			</fieldset></div>
 		</div>
-
+<%@ include file="./footer.jsp" %>
 </body>
 </html>
-<%@ include file="footer.jsp" %>

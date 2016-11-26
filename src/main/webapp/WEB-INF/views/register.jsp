@@ -9,7 +9,7 @@
 <title>FORM</title>
       <script type="text/javascript" src="resources/js/jquery-3.1.1.min.js"></script>
       <script src="resources/js/angular.min.js"></script>
-
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 <form:form method="POST" action="add/register" modelAttribute="userdetail">

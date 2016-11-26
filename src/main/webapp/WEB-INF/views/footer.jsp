@@ -160,7 +160,8 @@
 *************************************************************/</style>
 </head>
 <body>
-
+<hr>
+<div class="container">
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
 
@@ -295,7 +296,7 @@
                        </div>
                 </div>
 
-</footer>
+</footer></div>
 <!--header-->
 
 <div class="footer-bottom">

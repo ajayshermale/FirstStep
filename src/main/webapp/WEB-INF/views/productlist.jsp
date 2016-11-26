@@ -1,11 +1,17 @@
-
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ page isELIgnored="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="header.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
-
+      <script type="text/javascript" src="resources/js/jquery-3.1.1.min.js"></script>
+      <script src="resources/js/angular.min.js"></script>
+      
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
       
 <style>
 <!--product css -->
@@ -140,38 +146,51 @@ figcaption .project-creator {
 <body>
 <br>
 <div class="container">
- <form class="navbar-form navbar-left" role="search">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Search" ng-model="test"/>
+<!--  <form class="navbar-form navbar-left" role="search"> -->
+<!--             <div class="form-group"> -->
+<!--               <input type="text" class="form-control" placeholder="Search" ng-model="test"/> -->
              
-            </div>
-            <button type="submit" class="btn btn-default">Submit</button>
-        </form>
-               <ul class="nav navbar-nav navbar-right"> </ul>
-           </div>
+<!-- <!--             </div> --> 
+<!--             <button type="submit" class="btn btn-default">Submit</button> -->
+<!--         </form> -->
+<!--                <ul class="nav navbar-nav navbar-right"> </ul> -->
+<!--            </div> -->
 
 
-                              <div>
-<label>Search</label>
-<input type="text" ng-model="test"/>
-</div>
+<!-- <div> -->
+<!-- <label>Search</label> -->
+<!-- <input type="text" ng-model="test"/> -->
+<!-- </div> -->
+
 
 
  <div class="container"> 
 <div>
-
-
-
-    <h1 class="text-center text-primary title">Product List</h1>
-    <hr class="divider-title">
      <div ng-app="supplierapp" ng-controller="supplierCtrl">
      
-    <div class="col-ms-10 col-md-4" ng-repeat="x in abc| filter: test ">
-        <div class="project">
+<!--      <tr> -->
+<!-- <th ng-click="orderByMe('name')">Name</th> -->
+<!-- <th ng-click="orderByMe('country')">Country</th> -->
+<!-- </tr> -->
+     
+      <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search" ng-model="searchKeyword"  >
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+  </form>
+     <h1 class="text-center text-primary title">Product List</h1>
+    <hr class="divider-title" >
+     <input type="checkbox" ng-click="myNewFilter('x.subCategoryName')"/> {{x.subCategoryName}}<br>
+<!--      <label>Search</label> -->
+<!-- <input type="text" ng-model="test"/> -->
+    <div class="col-ms-10 col-md-4 col-sm-4" ng-repeat="x in abc| filter: searchKeyword  " >
+    
+        <div class="project" >
             <figure class="img-responsive">
               <img class="group list-group-image" src="resources/images/{{x.productId}}.jpg" width="400px" height="300px" />
             
-                <figcaption>
+               <figcaption>
                     <span class="project-details"><strong>{{x.productName}}</strong></span>
                     <span class="project-price"><strong><p1>Rs</p1>{{x.productPrice}}</strong></span>
 <%--                     <span class="container">${product.productDescription}</span> --%>
@@ -191,19 +210,27 @@ figcaption .project-creator {
 							<div class="col-md-1">
 								<a href="buynow-{{x.productId}}?userId=1" class="btn btn-success btn-product"><span class="glyphicon glyphicon-shopping-cart"></span> Buy</a></div>
 					</div>
-					 
+<!-- 		 
+                    $scope.searchKeyword=location.search.substr(8);
+       $scope.letterlimit=3;
+       $scope.abc = ${productjson};
+
+		  -->
   </div>
   </div>
-   </div>
 </div>
 </div>
- <script> 
+</div>
+  
+    <script> 
 var app = angular.module('supplierapp', []);
  app.controller('supplierCtrl', function($scope) {
-    $scope.abc = ${productjson}; 
-      
+    $scope.abc = ${productjson};
+  
+    $scope.searchKeyword=location.search.substr(8).slice(0,3);
+    $scope.letterlimit=3;
  });
- </script>
+ </script> 
 
 </div></div></div>
 
@@ -216,49 +243,6 @@ var app = angular.module('supplierapp', []);
 
 
 
-<_________________________________________________________________________
-<!--  <div class="container">  -->
-<!-- <div> -->
-
-
-
-   
-<!--     <hr class="divider-title" ng-app="supplierapp" ng-controller="supplierCtrl"> -->
-<!-- <!--      <div ng-model="searchKeyword" >   | filter: searchKeyword  --> -->
-     
-<!--     <div class="col-ms-10 col-md-4" ng-repeat="x in abc "  > -->
-<!--         <div class="project"> -->
-<!--             <figure class="img-responsive"> -->
-<!--               <img class="group list-group-image" src="resources/images/{{ap.productId}}.jpg" width="400px" height="300px" /> -->
-            
-<!--                 <figcaption> -->
-<!--                     <span class="project-details"><strong>{{x.productName}}</strong></span> -->
-<!--                     <span class="project-price"><strong><p1>Rs</p1>{{x.productPrice}}</strong></span> -->
-
-<!--                 </figcaption> -->
-   
-<!--                 <span class="actions"> -->
-<!--                 <a href="viewproduct-{{x. productId}}-product"> -->
-<!--                         <button  class="btn btn-warning bnt-action" type="submit" >View </button></a> -->
-<!--                  </span> -->
-                   
-<!--             </figure> -->
-
-<!--   </div> -->
-<!--   </div> -->
-<!--    </div> -->
-<!-- </div> -->
-<!-- </div> -->
-
-
-<!--   <script>   -->
-//  var app = angular.module('supplierapp', []);
-//   app.controller('supplierCtrl', function($scope,$http,$location) { 
-//      $scope.abc = ${productjson};  
-//    $scope.searchKeyword=location.search.substr(8);
-// 	   $scope.letterlimit=3;   
-//   });
-<!--   </script>  -->
 
 
 

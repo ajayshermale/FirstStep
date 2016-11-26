@@ -1,18 +1,21 @@
- <%@ include file="header.jsp" %>
+ 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 </head>
+   <script type="text/javascript" src="resources/js/jquery-3.1.1.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <body>
+<%@ include file="./header.jsp" %>
 <h1></h1>
 
 <div class="container">
       <div class="row">
       <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
-           <A href="editUserDetail-{{username}}" >Edit Profile</A>
-
+<!--            <A href="editUserDetail-{{username}}" >Edit Profile</A> -->
+<A></A>
         <A href="perform_logout" >Logout</A>
        <br>
     
@@ -70,7 +73,7 @@
                   </table>
                   
                   <a href="shippingaddress-{{userId}}" class="btn btn-primary">My Orders</a> 
-                  <a href="billingaddress-{{userId}}" class="btn btn-primary">My Wishlist</a> 
+                  <a href="wishlist" class="btn btn-primary">My Wishlist</a> 
                 </div>
               </div>
             </div>
@@ -88,8 +91,7 @@
       </div>
     </div>
 
-
+<%@ include file="./footer.jsp" %>
 </body>
 </html>
 
-<%@ include file="footer.jsp" %>

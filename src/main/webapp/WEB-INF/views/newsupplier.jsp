@@ -2,16 +2,17 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ include file="header.jsp" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <title>FORM</title>
       <script type="text/javascript" src="resources/js/jquery-3.1.1.min.js"></script>
       <script src="resources/js/angular.min.js"></script>
-
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+<%@ include file="./header.jsp" %>
 <form:form method="POST" action="add/newsupplier" modelAttribute="supplierdetail">
 <form:input path="userId" hidden="true"/>
 <div class="container">

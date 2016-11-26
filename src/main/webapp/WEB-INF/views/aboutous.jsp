@@ -1,4 +1,4 @@
- <%@ include file="header.jsp" %>
+ 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -6,7 +6,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<%@ include file="./header.jsp" %>
 <div class="container">
 <h1>ABOUT US</h1>
 <br><br>
@@ -30,10 +30,10 @@ of class. Our famous fashion advice for all is: Don't just be Stylish, Be Smart,
 <br><br>
 <h4>HOW TO GET IT GOING:</h4>
 <br>
-Welcome to the world of FISTSTEP - a smart, quick and easy way to get yourself access to the latest fasionista.
+Welcome to the world of FISTSTEP  a smart, quick and easy way to get yourself access to the latest fasionista.
 All you need to do is access our online storefront and fill out a brief survey to help us know your personal 
 style needs and preferences. Once you tell us what you like, our team of stylists will take you to an exciting
-journey, showing you the variety we boast of and will help you choose the best. And believe us – online shopping 
+journey, showing you the variety we boast of and will help you choose the best. And believe us  online shopping 
 at FISTSTEP is a lot of fun, not even a bit of it will disappoint you.
 
 
@@ -41,6 +41,8 @@ at FISTSTEP is a lot of fun, not even a bit of it will disappoint you.
 </p>
 
 </div>
+
+<%@ include file="./footer.jsp" %>
+
 </body>
 </html>
-<%@ include file="footer.jsp" %>

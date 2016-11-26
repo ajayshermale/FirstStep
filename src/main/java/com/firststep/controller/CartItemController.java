@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.firststep.model.CartItem;
+import com.firststep.model.Product;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.service.CartItemService;
@@ -86,14 +87,18 @@ public class CartItemController
 		   return model;
     }
 	
-	@RequestMapping("/checkout")
-	public String checkout(@ModelAttribute("cartItem") CartItem cartItem, HttpSession session){
+	@RequestMapping("/checkout-{productId}")
+	public String checkout(@ModelAttribute("cartItem") CartItem cartItem,@PathVariable("productId") int productId, HttpSession session,Product product){
 	
 		 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	     String username = auth.getName(); 
 		
 	    int userId=userService.getUserName(username).getUserId();
 	     session.setAttribute("userId", userId);
+	     
+	     session.setAttribute("productId",productId);
+	     productId=(Integer) session.getAttribute("productId");
+	     
 		
 	    return "redirect:/check?userId="+userId;
 	}

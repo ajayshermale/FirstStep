@@ -3,7 +3,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ include file="header.jsp" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,6 +26,18 @@
     );
 });</script>
 
+  <script>$(document).ready(function(){
+	    $(".dropdown").hover(            
+	            function() {
+	                $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideDown("400");
+	                $(this).toggleClass('open');        
+	            },
+	            function() {
+	                $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideUp("400");
+	                $(this).toggleClass('open');       
+	            }
+	        );
+	    });</script>
  <script type="text/javascript" src="resources/js/jquery-3.1.1.min.js"></script>
       <script src="resources/js/angular.min.js"></script>
 
@@ -34,6 +46,7 @@
 
 .nav-tabs {
   display: inline-block;
+  
   border-bottom: none;
   padding-top: 15px;
   font-weight: bold;
@@ -70,6 +83,63 @@
       display: none;
     }
   }
+  
+  /* second navbar*/
+  body {
+  font-family: 'Open Sans', 'sans-serif';
+}
+.mega-dropdown {
+  position: static !important;
+}
+.mega-dropdown-menu {
+    padding: 20px 0px;
+    width: 100%;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+.mega-dropdown-menu > li > ul {
+  padding: 0;
+  margin: 0;
+}
+.mega-dropdown-menu > li > ul > li {
+  list-style: none;
+}
+.mega-dropdown-menu > li > ul > li > a {
+  display: block;
+  color: #222;
+  padding: 3px 5px;
+}
+.mega-dropdown-menu > li ul > li > a:hover,
+.mega-dropdown-menu > li ul > li > a:focus {
+  text-decoration: none;
+}
+.mega-dropdown-menu .dropdown-header {
+  font-size: 18px;
+  color: #ff3546;
+  padding: 5px 60px 5px 5px;
+  line-height: 30px;
+}
+
+.carousel-control {
+  width: 30px;
+  height: 30px;
+  top: -35px;
+
+}
+.left.carousel-control {
+  right: 30px;
+  left: inherit;
+}
+.carousel-control .glyphicon-chevron-left, 
+.carousel-control .glyphicon-chevron-right {
+  font-size: 12px;
+  background-color: #fff;
+  line-height: 30px;
+  text-shadow: none;
+  color: #333;
+  border: 1px solid #ddd;
+}
+  
 <!--product css -->
 
 body{
@@ -180,6 +250,7 @@ figcaption .project-creator {
     display: block;
 }
 
+
 .project figure .actions button {
     padding: 13px 20px;
     font-size: 16px;
@@ -197,11 +268,12 @@ figcaption .project-creator {
 
 </head>
 <body>
+
+<%@ include file="./header.jsp" %>
+
 <div></div>
 <div class="container side-collapse-container">
-<nav class="navbar navbar-default" role="navigation">
   <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
         <span class="sr-only">Toggle navigation</span>
@@ -211,52 +283,60 @@ figcaption .project-creator {
       </button>
       <a class="navbar-brand" href="#"></a>
     </div>
+<div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
-        <ul class="nav navbar-nav">
-   <c:forEach var="category" items="${listCategories}" >
-            <li class="dropdown mega-dropdown active">
+<div class="container">
+  <nav class="navbar navbar">
+    <div class="navbar-header">
+    	<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".js-navbar-collapse">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+		<a class="navbar-brand" href="#">My Store</a>
+	</div>
+	
+	<div class="collapse navbar-collapse js-navbar-collapse" >
+		<ul class="nav navbar-nav">
+		  <c:forEach var="category" items="${listCategories}" >
+			<li class="dropdown mega-dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">${category.categoryName} <span class="caret"></span></a>				
+				<ul class="dropdown-menu mega-dropdown-menu">
+
+					
+					<c:forEach var="subcategory" items="${category.subcategory}" >
+					<li class="col-sm-3">
+						<ul>
+						 
+							<li class="dropdown-header"><a href="productlist?search=${subcategory.subcategoryName}">${subcategory.subcategoryName}</a></li>
+							<c:forEach var="subcategory" items="${subcategory.product}" >
+							<li><a href="productlist?search=${subcategory.productName}">${subcategory.productName}</a></li></c:forEach>
+						</ul>
+					</li></c:forEach></ul></li>
+					</c:forEach>
+				</ul>			
+			</li>
             
-       <a href="#" class="dropdown-toggle" data-toggle="dropdown">${category.categoryName} <span class="caret"></span></a>    
-    <div class="dropdown-menu mega-dropdown-menu">
-                    <div class="container-fluid">
-           
-                    <!-- Nav tabs -->
-                    <ul class="nav nav-tabs" role="tablist">
-                        <c:forEach var="subcategory" items="${category.subcategory}" >
-                       <li><a href="productlist?search={{searchKeyword}}" role="tab" data-toggle="tab">${subcategory.subcategoryName} </a></li></c:forEach>
- 
-                    </ul> 
-                    </div></div>
-                    </c:forEach></ul>
-                    
+	</div>
+	
+  </nav>
+</div>
 
-    </div>  </nav>
+
+</div>
+
   
-        <form class="navbar-form navbar-left" role="search">
+  <form class="navbar-form navbar-left" role="search">
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Search" >
+              <input type="text" class="form-control" placeholder="Search" ng-model="searchKeyword"  >
             </div>
-            <button type="submit" class="btn btn-default">Submit</button>
-        </form>
+           <a  href="productlist"><button type="submit" class="btn btn-default">Submit</button></a>
+  </form>
                <ul class="nav navbar-nav navbar-right"> </ul>
            </div>
-<!--             <li class="dropdown"> -->
-<!--               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a> -->
-<!--               <ul class="dropdown-menu" role="menu"> -->
-<!--                 <li><a href="#">Action</a></li> -->
-<!--                 <li><a href="#">Another action</a></li> -->
-<!--                 <li><a href="#">Something else here</a></li> -->
-<!--                 <li class="divider"></li> -->
-<!--                 <li><a href="#">Separated link</a></li> -->
-<!--               </ul> -->
-<!--             </li> -->
-<!--         </ul> -->
-<!--     </div> -->
+
  
-
-
 <!-- body -->
 <div class="container side-collapse-container">
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -297,10 +377,6 @@ figcaption .project-creator {
       <span class="sr-only">Next</span>
     </a>
 </div>
-  
-<!-- <div class="container text-center"> -->
-<!--   <h3>What We Do</h3><br> -->
-<!-- </div> -->
 
 <br>
 <div>
@@ -338,7 +414,7 @@ figcaption .project-creator {
     <hr class="divider-title">
      <div ng-app="supplierapp" ng-controller="supplierCtrl">
      
-    <div class="col-ms-10 col-md-4" ng-repeat="x in abc">
+    <div class="col-ms-10 col-md-4 col-sm-4" ng-repeat="x in abc">
         <div class="project">
             <figure class="img-responsive">
               <img class="group list-group-image" src="resources/images/{{x.productId}}.jpg" width="400px" height="300px" />
@@ -356,11 +432,14 @@ figcaption .project-creator {
                    
                  </figure>
                              <div class="row">
-							<div class="col-md-7">
-								<a class="btn btn-primary btn-product"><span class="glyphicon glyphicon-thumbs-up"></span> Like</a> 
+							<div class="col-md-3">
+								<a href="wishlist-{{x.productId}}?userId=1"class="btn btn-primary btn-product"><span class="glyphicon glyphicon-thumbs-up"></span> Like</a> 
+							</div>
+							<div class="col-md-4">
+								<a href="wishlist-{{x.productId}}?userId=1"class="btn btn-danger"><span class="glyphicon glyphicon-shopping-cart"></span> Add to cart </a> 
 							</div>
 			
-							<div class="col-md-1">
+							<div class="col-md-2">
 								<a href="buynow-{{x.productId}}?userId=1" class="btn btn-success btn-product"><span class="glyphicon glyphicon-shopping-cart"></span> Buy</a></div>
 					</div>
 					 
@@ -379,63 +458,12 @@ var app = angular.module('supplierapp', []);
 
 </div></div></div>
 
-<!-- sale images-->
 
-<!-- <div class="jumbotron"> -->
-<!--   <div class="container text-center"> -->
-<!--     <img src="resources/images/34.jpg" class="img-responsive" style="width:100%" alt="Image"> -->
-<!--     <h1>My</h1> -->
-<!--     <p></p> -->
-<!--   </div> -->
-<!-- </div> -->
 
-<!--   <div class="container"> -->
-<!-- <div class="container-fluid bg-3 text-center"> -->
-<!--   <h1></h1><br> -->
-<!--   <div class="row"> -->
-<!--     <div class="col-sm-3"> -->
-<!--       <p>NAVY BLUE</p> -->
-<!--       <img src="resources/images/FST_1060_NAVY_BLUE_1_1(1).JPG" class="img-responsive" style="width:100%" alt="Image"> -->
-<!--     </div> -->
-<!--     <div class="col-sm-3"> -->
-<!--       <p>HYDRA</p> -->
-<!--       <img src="resources/images/HYDRA_17_RBL-PGN_1.JPG" class="img-responsive" style="width:100%" alt="Image"> -->
-<!--     </div> -->
-<!--     <div class="col-sm-3"> -->
-<!--       <p>RBK</p> -->
-<!--       <img src="resources/images/TS-164BLK-PGN_1.jpg" class="img-responsive" style="width:100%" alt="Image"> -->
-<!--     </div> -->
-<!--     <div class="col-sm-3"> -->
-<!--       <p>WHITE AIR</p> -->
-<!--       <img src="resources/images/LPJ_05_WHT-NBL_1_1.JPG" class="img-responsive" style="width:100%" alt="Image"> -->
-<!--     </div> -->
-<!--   </div> -->
-<!-- </div><br> -->
-
-<!-- <div class="container-fluid bg-3 text-center"> -->
-<!--   <div class="row"> -->
-<!--     <div class="col-sm-3"> -->
-<!--       <p>TENBLSBLKWHT</p> -->
-<!--       <img src="resources/images/TENBLSBLKWHT01_1110PX_1_.JPG" class="img-responsive" style="width:100%" alt="Image"> -->
-<!--     </div> -->
-<!--     <div class="col-sm-3"> -->
-<!--       <p>TENSANBLSVLBLK</p> -->
-<!--       <img src="resources/images/TENSANBLSVLBLK01_1110PX_1_.JPG" class="img-responsive" style="width:100%" alt="Image"> -->
-<!--     </div> -->
-<!--     <div class="col-sm-3"> -->
-<!--       <p>TENBLSWHRED</p> -->
-<!--       <img src="resources/images/TENBLSWHRED02_1110PX_1_.JPG" class="img-responsive" style="width:100%" alt="Image"> -->
-<!--     </div> -->
-<!--     <div class="col-sm-3"> -->
-<!--       <p>TENBLSWHGRN</p> -->
-<!--       <img src="resources/images/TENBLSWHGRN04_1110PX_1_.JPG" class="img-responsive" style="width:100%" alt="Image"> -->
-<!--     </div> -->
-<!--   </div> -->
-<!-- </div><br><br> -->
-<!-- </div> -->
+<%@ include file="./footer.jsp" %>
 </body>
 </html>
-<%@ include file="footer.jsp" %>
+
 
 
 

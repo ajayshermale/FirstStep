@@ -36,27 +36,41 @@ public class FirstStep {
 	@Autowired
 	private UserService userService;
 	
+	@Autowired
+	private ProductService productService;
+	
 		@RequestMapping("/")
 		public String getHome(Model model)
 		{  
 			model.addAttribute("category",new Category());
 			model.addAttribute("listCategories", this.categoryService.CategoryList());
 			model.addAttribute("listsubCategory",this.subcategoryService.listsubCategory());
+			model.addAttribute("listproduct",this.productService.listproduct());
 			
 			model.addAttribute("productjson",this.productFullViewService.stringproductFullView());  
 			return "index";
 		}
 	
 		
-
 		
-		@RequestMapping("/productlist")
-		public String displayProducts(Model model)
-		{
-			model.addAttribute("productjson",this.productFullViewService.stringproductFullView());
-			return "productlist";
+		@RequestMapping("/secondnav")
+		public String getsecondnav(Model model)
+		{  
+			model.addAttribute("category",new Category());
+			model.addAttribute("listCategories", this.categoryService.CategoryList());
+			model.addAttribute("listsubCategory",this.subcategoryService.listsubCategory());
+			model.addAttribute("listproduct",this.productService.listproduct());
 			
+			model.addAttribute("productjson",this.productFullViewService.stringproductFullView());  
+			return "secondnav";
 		}
+		
+		
+		
+		
+		
+		
+	
 		
 		@RequestMapping("/profile")
 		public String displayProfile(String username,Model model)
@@ -86,6 +100,15 @@ public class FirstStep {
 			model.addAttribute("billingAddress",this.userService.getBillingAddress(userId));
 			return "billingaddress";
 		}
+		
+
+//		@RequestMapping(value="/productlist?search={subcategoryName}")
+//		public String getProductlist()
+//		{ 
+//			
+//			return "productlist";
+//		}
+		
 		
 		@RequestMapping("/aboutous")
 		public String getAboutOus()

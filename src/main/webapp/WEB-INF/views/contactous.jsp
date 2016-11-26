@@ -1,4 +1,4 @@
- <%@ include file="header.jsp" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -6,6 +6,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+ <%@ include file="./header.jsp" %>
 <div class="container">
 <h1>CONTACT US</h1>
 
@@ -20,8 +21,7 @@
 <h4>Andheri(EAST) - 400093 (India)</h4>
 
 </div>
-
+<%@ include file="./footer.jsp" %>
 
 </body>
 </html>
-<%@ include file="footer.jsp" %>

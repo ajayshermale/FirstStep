@@ -43,6 +43,14 @@ public class ProductService
 		 return productDAOImpl.getProductById(productId);
 		 
 	  }
-	 
-	 
+	 @Transactional
+	 public void subProduct(int productId)
+	 {
+		  productDAOImpl.subProduct(productId);
+	 }
+	 @Transactional
+	 public void addProduct(int productId)
+	 {
+		productDAOImpl.addProduct(productId); 
+	 }
 }

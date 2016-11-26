@@ -8,8 +8,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
   <script type="text/javascript" src="resources/js/jquery-3.1.1.min.js"></script>
-      <script src="resources/js/angular.min.js"></script>
-
+  <script src="resources/js/angular.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 <%@ include file="./header.jsp" %>
@@ -17,7 +17,7 @@
 
 <div class="container">
 <div class="row">
-<div class="col-md-12"><h4>Cart List</h4>
+<div class="col-md-12"><h4>Wishlist List</h4>
 <div></div>
 <br>
 <div class="table-responsive">
@@ -30,18 +30,20 @@
 <th>ProductName</th>
 <th>ProductPrise</th>
 
-<th>Date</th> 
+
 <th>productImage</th>
+<th></th> 
 <th></th>
 <!-- <th>Delete|Edit|View</th> -->
 </tr>
 <!-- <td>{{x.cartItemId}}</td> -->
 <!-- <td>{{x.quantity}}</td> -->
+<tr ng-repeat="x in abc ">
 <td>{{x.productName}}</td>
 <td>{{x.amount}}</td>
-<td>{{x.orderDate}}</td> 
+
 <td><img  src="resources/images/{{x.productId}}.jpg" width="100px" height="100px"> </td>
-<td><a href="checkout-{{x.productId}}" class="btn btn-default">Checkout</a></td>
+<td><a  href="deleteWishlist-{{x.wishlistId}}" class="btn btn-default">Remove</a></td>
 </tr>
 </tbody>
 </table>
@@ -54,7 +56,7 @@
  <script> 
 var app = angular.module('supplierapp', []);
  app.controller('supplierCtrl', function($scope) {
-    $scope.x = ${cartItemlist};
+    $scope.abc = ${wishlistlist};
   
  });
  </script> 
